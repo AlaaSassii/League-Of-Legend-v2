@@ -1,38 +1,307 @@
-.App {
+/* imports */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cairo:wght@300;400;600;800&family=Lato&family=Signika+Negative:wght@400;500&family=Work+Sans:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+/* Start Variables */ 
+:root{
+  /* black */
+  --primary-black:#0b090a ; 
+  --secondary-black:#161a1d ; 
+  /* red */
+  --primary-red : #ba181b ; 
+  --primary-red-2 : #a4161a ; 
+  --primary-red-3 :#660708 ; 
+  /* gray */
+  --primary-gray:#f5f3f4 ; 
+  --primary-gray-2:#d3d3d3 ; 
+  --primary-gray-3:#b1a7a6 ; 
+}
+/* End Variables */ 
+
+/* Start Global Rules */  
+*{
+  margin : 0 ; 
+  padding: 0 ; 
+  -webkit-box-sizing: border-box; 
+  -moz-box-sizing : border-box ; 
+  box-sizing : border-box
+}
+ul { 
+  list-style: none;
+
+}
+body{
+	font-family: 'Archivo Black', sans-serif;
+  font-family: 'Cairo', sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-family: 'Signika Negative', sans-serif;
+  font-family: 'Work Sans', sans-serif;
+  background-color: var(--primary-gray);
+}
+.container { 
+  padding: 0 15px ; 
+  width:600px ; 
+  margin: 0 auto ; 
+}
+/* Alert */
+.alert{
+  max-width: 300px;
+  border : solid 1px var(--primary-red) ; 
+  background-color: #fff1f0 ;
+  padding:10px ; 
   text-align: center;
+  color:#ba181b; 
+  margin: auto;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Loading */
+  .loading{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+  .lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+/* Small*/
+@media(min-width:768px){
+.container{ 
+ width:750px ; 
 }
+}
+/* Medium */
+@media(min-width:992px){
+.container{ 
+ width:970px ; 
+}
+}
+/* Large */
+@media(min-width:1200px){
+.container{ 
+ width:1170px ; 
+}
+}
+/* End Global Rules */  
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+/* Start Navbar */
+nav{
+  background-color: var(--primary-red-2);
+  color: #fff; 
+}
+nav  .logo{
+  height: 60px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
+nav > .container { 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-.App-link {
-  color: #61dafb;
 }
+nav > .container > ul { 
+  display: flex;
+}
+nav > .container > ul li { 
+  padding:0 20px ; 
+  cursor: pointer;
+}
+/* End Navbar */
+.SignUp{
+  border: solid 10px blue;
+}
+.SignUp .container { 
+  padding:50px 50px ;
+  
+}
+.SignUp .form {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+@media(max-width:768px){
+  .SignUp .form {flex-direction: column-reverse;}
+}
+.SignUp .images { 
+  display: grid;
+  grid-template-columns: repeat(auto-fill , minmax(100px , 1fr));
+  max-width: 400px;
+  grid-gap:10px ;
+}
+@media(max-width:768px){
+  .SignUp .images { 
+    border:1px solid red ; 
+    grid-template-columns: repeat(auto-fill , minmax(75px , 1fr));
+    margin-left:-200px ; 
+  max-width: 300px;
+    margin-top:25px 
+  }
+}
+.SignUp .images > div { 
+  width: 100%;
+}
+.SignUp .images > div img { 
+  width: 100%;
+  filter: grayscale(100%);
+  transition: .3s;
+}
+.SignUp .images > div img:hover {
+  cursor: pointer;
+  filter: grayscale(00%);
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+}
+.SignUp .images > div .nofilter{
+  filter: grayscale(00%);
+  
+}
+.SignUp .input {
+  border: #0b090a solid 3px;
+  width: 500px;
+}
+@media(max-width:768px){
+  .SignUp .input {
+    margin-left: -200px;
+  width: 300px;
+
   }
 }
+.SignUp .input input{
+  display: block;
+  width: 100%;
+  padding:10px 5px;
+  margin-bottom: 10px ; 
+  outline : none ; 
+}
+.SignUp .input > div{
+  display: flex;
+  gap:10px 
+}
+.SignUp button{
+  padding:5px 10px;
+  background-color: #ba181b;
+  color:white ;
+  border:none ; 
+  border-radius: 5px;
+  margin-top: 20px; 
+  cursor: pointer;
+  transition: .3s;
+  margin : 0 0 0 auto     ;
+  display: flex;
+  align-items: flex-start;
+  width: 70px;
+}
+.SignUp button:hover { 
+  background-color: var(--primary-red-3);
+}
+.SignUp h1 {
+  margin-bottom: 100px;
+}
+@media (max-width:768px){
+  .SignUp h1 {
+    margin-bottom: 50px;
+  }
+  .SignUp button{
+    align-items: flex-start;
+    margin: 40px 0 0 0 ;
+  }
+}
+/* Start SignUp */
+
+/* End SignUp */
+
+
+/*  Start Landing */
+  .singin{
+    background:url('./assets/210820_HextechMayhem_KA_Master_RGB.0.jpg') no-repeat center/cover; 
+    width: 100%;
+    height: 100vh;
+    position: relative;    
+  }
+  .singin .container{
+    position: absolute;
+    top:50% ; 
+    left: 50% ; 
+    border: solid 2px deeppink;
+    transform: translate(-50%);
+
+  }
+  .singin .form { 
+    background-color: var(--secondary-black);
+    color:white  ;
+    width: 400px;
+    border-radius: 10px ;
+    padding:10px ; 
+    text-align: center;
+  }
+  .singin .form  h2 { 
+    padding:10px ; 
+  }
+  .singin .form input { 
+    display: block;
+    margin-bottom: 7px ;
+    width: 100%;
+    padding:10px 5px ; 
+    outline:none ; 
+  }
+  .singin .form p { 
+    font-size: 13px ;
+    font-weight: 400;
+    color: var(--primary-gray-3);
+    margin-bottom: 10px ;
+  }
+  .singin .form a { 
+    color: var(--primary-red);
+  }
+  .singin .form button { 
+    display: flex;
+    align-items: center;
+    justify-content: center ; 
+    background-color: #ba181b;
+    color:white ; 
+    padding:10px 5px ; 
+    border-radius: 5px ;
+    width: 100px;
+    border:none ; 
+    outline : none ; 
+    margin-left: auto;
+    margin-right:0;
+    transition: .3s;
+  }
+  .singin .form button:hover { 
+    background-color:#a4161a ;
+  } 
+  /*  End Landing*/
