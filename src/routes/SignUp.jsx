@@ -1,20 +1,29 @@
 import { database } from '../firebase-config'
+import {addDoc ,  getDoc, getDocs , collection} from 'firebase/firestore'
 import React ,{useState , useEffect} from 'react'
 const SignUp = () => {
+  // data base 
+  const accountsRef = collection(database , 'users') ; 
+  
+  const [accounts , setAccounts] = useState([]) ; 
   const [inputs, setInputs] = useState({name:'',userName:'' , email:'' ,password:'' ,copassword:'',image:''}) ; 
   const [images ,setImages] = useState({image1:false ,image2:false , image3:false,image4:false , image5:false , image6:false })
   const intialImages = {image1:false ,image2:false , image3:false,image4:false , image5:false , image6:false } ;  
   const [showAlert , setShowAlert] = useState({show:false , text:''})
-
-  console.log(inputs)
-  const Check = () => { 
-    if (inputs.name && inputs.userName && inputs.email && inputs.password && inputs.copassword && inputs.image){
-      return false
-    }
-    else return true 
-  }
+ 
+ console.log(inputs,'inputs')
 
   const submitDatabase = () => { 
+    const createUser = async () => {
+      const {name , userName , email , password , image } = inputs 
+      await addDoc(accountsRef, {name , userName , email , password , image  });
+      console.log('DONEEE')
+    };
+    console.log(accounts)
+      const Check = () => { 
+      if (inputs.name && inputs.userName && inputs.email && inputs.password && inputs.copassword && inputs.image) return false
+      else return true 
+      }
       if(Check()) {
         setShowAlert({show:true , text:'Some Data is not Completed to Sign up'})
       }
@@ -23,18 +32,29 @@ const SignUp = () => {
         if (password !== copassword) 
         setShowAlert({show:true,text:'the Co-password is not password'})
         else { 
-          
+          console.log('wait for it ')
+          createUser() ; 
+          console.log('done')
         }
       }
   }
-
-
+  // useEffect for Showin Alert 
   useEffect(()=>{
     if(showAlert.show){
     setTimeout(()=>{
       setShowAlert({...showAlert , show:false})
     },4000)}
   },[showAlert])
+
+  // useEffect for looking for accounts 
+  useEffect(()=>{
+    const getAccounts = async () => { 
+      const data = await getDocs(accountsRef) ;
+      setAccounts(data.docs.map((doc)=>({ ...doc.data(), id: doc.id })));
+      console.log(accounts.map(account => account))
+    }
+    getAccounts() ; 
+  },[])
   return (
     <div className='SignUp'>
 
