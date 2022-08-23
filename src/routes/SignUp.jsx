@@ -1,25 +1,32 @@
 import { database } from '../firebase-config'
 import {addDoc ,  getDoc, getDocs , collection} from 'firebase/firestore'
 import React ,{useState , useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
+const Data = {
+  name:'',userName:'' , email:'' ,password:'' ,copassword:'',image:''
+}
+const images1 = {
+  image1:false ,image2:false , image3:false,image4:false , image5:false , image6:false
+} 
 const SignUp = () => {
-  // data base 
   const accountsRef = collection(database , 'users') ; 
-  
+  let navigate = useNavigate() ; 
   const [accounts , setAccounts] = useState([]) ; 
-  const [inputs, setInputs] = useState({name:'',userName:'' , email:'' ,password:'' ,copassword:'',image:''}) ; 
-  const [images ,setImages] = useState({image1:false ,image2:false , image3:false,image4:false , image5:false , image6:false })
-  const intialImages = {image1:false ,image2:false , image3:false,image4:false , image5:false , image6:false } ;  
+  const [inputs, setInputs] = useState(Data) ; 
+  const [images ,setImages] = useState(images1)
+  const intialImages = images1 ;  
   const [showAlert , setShowAlert] = useState({show:false , text:''})
  
  console.log(inputs,'inputs')
 
   const submitDatabase = () => { 
-    const createUser = async () => {
+    const createUser = async (id) => {
       const {name , userName , email , password , image } = inputs 
-      await addDoc(accountsRef, {name , userName , email , password , image  });
-      console.log('DONEEE')
+      const Ref = id ; 
+      await addDoc(accountsRef, {name , userName , email , password , image , Ref  });
+      navigate(`/Home/${id}`)
     };
-    console.log(accounts)
+    console.log('accounts',accounts)
       const Check = () => { 
       if (inputs.name && inputs.userName && inputs.email && inputs.password && inputs.copassword && inputs.image) return false
       else return true 
@@ -32,9 +39,8 @@ const SignUp = () => {
         if (password !== copassword) 
         setShowAlert({show:true,text:'the Co-password is not password'})
         else { 
-          console.log('wait for it ')
-          createUser() ; 
-          console.log('done')
+          const id1 = new Date().getTime() ; 
+          createUser(id1) ; 
         }
       }
   }
@@ -51,7 +57,7 @@ const SignUp = () => {
     const getAccounts = async () => { 
       const data = await getDocs(accountsRef) ;
       setAccounts(data.docs.map((doc)=>({ ...doc.data(), id: doc.id })));
-      console.log(accounts.map(account => account))
+      console.log('accounts',accounts)
     }
     getAccounts() ; 
   },[])
