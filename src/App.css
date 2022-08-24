@@ -28,6 +28,19 @@ ul {
   list-style: none;
 
 }
+button
+{
+  background-color: var(--primary-red);
+  font-size: 18px;
+  color:white ; 
+  padding:5px ; 
+  border-radius:5px ; 
+  cursor:  pointer;
+  border:none ; 
+  outline : none ; 
+  transition: .3s;
+}
+
 body{
 	font-family: 'Archivo Black', sans-serif;
   font-family: 'Cairo', sans-serif;
@@ -347,7 +360,7 @@ nav > .container > ul li {
     position: absolute;
     top: -15px ; 
     left: -15px ; 
-    border: 10px solid #e9e9e9;
+    border: 10px solid var(--primary-gray)
 }
 .post .info .text { 
     width: fit-content;
@@ -380,5 +393,40 @@ nav > .container > ul li {
     transform: translateX(-50%);
     height: 100%;
     width: .5px ;
-    background-color: #999;
+    background-color: var(--primary-gray-2);
+}
+.post {
+}
+.post .comment-section {
+  display: flex;
+  padding:5px 10px; 
+  background-color: white ;
+  align-items: center;
+}
+.post .image-comment{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+.post .image-comment img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: center;
+}
+.post input { 
+  width: 80% ;
+  margin-left:5% ; 
+  border:none ; 
+  outline:none
+}
+.post .interaction button {
+  border:none ; 
+  outline : none ; 
+  background-color: transparent;
+  color: #161a1d;
+  font-weight: 500;
+}
+.post .interaction button:hover { 
+  background-color: var();
 }

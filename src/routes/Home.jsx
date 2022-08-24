@@ -9,15 +9,18 @@ const Home = () => {
     const PostCollectionRef = collection(database , 'posts') ; 
 
     // React
+    const [loading ,setLoading] = useState(true)
     const [user , setUser] = useState('') ;  
     const [inputValue , setInputValue] = useState('') ; 
     console.log(user)
     const {id } = useParams() ; 
     useEffect(() => {
+        setLoading(true) ; 
         const getUser = async () => { 
             const newData = await getDocs(usersCollectionRef) ; 
             const accounts = newData.docs.map(user => user.data() ) ; 
-            setUser(accounts.find(account => account.Ref == id)) ; 
+            setUser(accounts.find(account => account.Ref == id)) ;
+            setLoading(false) 
         }
         getUser() ; 
     }, []) ; 
@@ -25,13 +28,14 @@ const Home = () => {
     // functions 
     const AddPost = async () => { 
         const Time = new Date()
-        await addDoc(PostCollectionRef, {...user ,post:inputValue , time:Time });
-
+        await addDoc(PostCollectionRef, {...user ,post:inputValue , time:Time ,likes:0 , comments:0 ,commentsText:[] });
+        setInputValue('')
     }
-  return (
+    if (loading) return <h1>Loading...</h1>
+    else return (
     <div className='container' style={{margin:'auto'}}>
         <input type="text" placeholder='Add a Post' value={inputValue} onChange={e => setInputValue(e.target.value) }/> <button onClick={AddPost}>Create</button>
-        <Posts/>
+        <Posts user={user}/>
     </div>
   )
 }
