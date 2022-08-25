@@ -1,6 +1,7 @@
 import React ,{ useEffect ,useState} from 'react'
 import { collection , getDocs ,  doc , updateDoc  } from 'firebase/firestore';
 import { database } from '../firebase-config';
+import { useNavigate } from 'react-router-dom';
 import Post from './Post';
 
 const Posts = ({user}) => {
@@ -8,12 +9,14 @@ const Posts = ({user}) => {
 
     const [posts,setPosts] = useState([]) ; 
     const [loading ,setLoading] = useState(false) ; 
+
+    // navigation 
     console.log(posts)
     useEffect(()=>{
         setLoading(true)
         const getPosts = async () => { 
             const newData = await getDocs(PostCollectionRef) ; 
-            setPosts(newData.docs.map(user => ({...user.data() , id: user.id }) )) ; 
+            setPosts(newData.docs.map(user => ({...user.data() , id: user.id }) ).reverse()) ; 
             setLoading(false)
         }
         getPosts() ; 

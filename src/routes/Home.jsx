@@ -18,8 +18,7 @@ const Home = () => {
         setLoading(true) ; 
         const getUser = async () => { 
             const newData = await getDocs(usersCollectionRef) ; 
-            const accounts = newData.docs.map(user => user.data() ) ; 
-            setUser(accounts.find(account => account.Ref == id)) ;
+            setUser(newData.docs.find(account => account.id == id)) ;
             setLoading(false) 
         }
         getUser() ; 

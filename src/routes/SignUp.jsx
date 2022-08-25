@@ -24,7 +24,10 @@ const SignUp = () => {
       const {name , userName , email , password , image } = inputs 
       const Ref = id ; 
       await addDoc(accountsRef, {name , userName , email , password , image , Ref  });
-      navigate(`/Home/${id}`)
+      const newData = await getDocs(accountsRef) ; 
+      const idz = newData.docs.find(post => post.data().Ref === id )
+
+      navigate(`/Home/${idz.id}`)
     };
     console.log('accounts',accounts)
       const Check = () => { 

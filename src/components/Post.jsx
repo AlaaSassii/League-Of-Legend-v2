@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import { collection , getDocs ,  doc , updateDoc  } from 'firebase/firestore';
 import { database } from '../firebase-config';
+import { useNavigate } from 'react-router-dom';
 
-const Post = ({userName ,email , image , time , post ,user , comments , likes , commentsText , id}) => {
+const Post = ({userName ,email , image , time , post ,user , comments , likes , commentsText , id }) => {
+    const postId = id ; 
+    const {Ref} = user
     const [commentInput ,setComment] = useState('') ; 
+    let navigate = useNavigate()
+
     function toDateTime(secs) {
         var t = new Date(1970, 0, 1); // Epoch
         t.setSeconds(secs);
@@ -12,7 +17,7 @@ const Post = ({userName ,email , image , time , post ,user , comments , likes , 
     console.log('time',toDateTime(time.seconds))
     const addComment = async (id)=>{
         const userDoc = doc(database, "posts", id);
-        const newFields = { userName,comment:commentInput , image };
+        const newFields = { userName:user.userName,comment:commentInput , image:user.image };
         await updateDoc(userDoc,{commentsText:[...commentsText , newFields],comments:comments + 1});
     }
     const Like = async (id) => {
@@ -32,7 +37,9 @@ const Post = ({userName ,email , image , time , post ,user , comments , likes , 
                 <h6>{toDateTime(time.seconds).toString()}</h6>
             </div>
         </div>
-        <div className="post-text">
+        <div className="post-text" onClick={()=>{
+            navigate(`/Home/${Ref}/${postId}`) ; 
+        }}>
            {post}
         </div>
         <div className="interaction">
@@ -45,8 +52,24 @@ const Post = ({userName ,email , image , time , post ,user , comments , likes , 
             </div>
             <input onChange={(e)=> setComment(e.target.value)} type="text" placeholder='comment' />
             <button onClick={()=>addComment(id)}>add</button>
-            <button  onClick={()=>Like()} style={{marginLeft:'5px'}}>Like</button>
+            <button  onClick={()=>Like(id)} style={{marginLeft:'5px'}}>Like</button>
         </div>
+        <div>{
+            
+            commentsText.slice(0,2).map(com => {
+                const {comment , image ,  userName} = com
+                return <div className='singleComment'>
+                    <div>
+                        <h6>{userName}</h6>
+                        <img src={image} alt="" />
+                    </div>
+                    <p>{comment}</p>
+                </div>
+            })}
+            {
+                commentsText.length > 2 && <a href=''>Look at all the comments</a>
+            }
+            </div>
     </div>
   )
 }
