@@ -23,7 +23,7 @@ const SignUp = () => {
     const createUser = async (id) => {
       const {name , userName , email , password , image } = inputs 
       const Ref = id ; 
-      await addDoc(accountsRef, {name , userName , email , password , image , Ref  });
+      await addDoc(accountsRef, {name , userName , email , password , image , Ref, following:0 , followers:0 , followingAccounts:[] , followersAccounts : []  });
       const newData = await getDocs(accountsRef) ; 
       const idz = newData.docs.find(post => post.data().Ref === id )
 

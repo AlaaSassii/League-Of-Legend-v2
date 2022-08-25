@@ -184,20 +184,20 @@ nav > .container > ul li {
     margin-top:25px 
   }
 }
-.SignUp .images > div { 
+ .images > div { 
   width: 100%;
 }
-.SignUp .images > div img { 
+ .images > div img { 
   width: 100%;
   filter: grayscale(100%);
   transition: .3s;
 }
-.SignUp .images > div img:hover {
+ .images > div img:hover {
   cursor: pointer;
   filter: grayscale(00%);
 
 }
-.SignUp .images > div .nofilter{
+ .images > div .nofilter{
   filter: grayscale(00%);
   
 }

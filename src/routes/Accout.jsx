@@ -9,6 +9,7 @@ const Accout = () => {
     const usersCollectionRef = collection(database,'users')
     const [loading,setLoading] = useState(true) ; 
     const [account ,setAccount] = useState({}) ; 
+    console.log(account) ; 
     const {id} = useParams() ; 
     useEffect(()=>{
         const getAccount = async () => { 
@@ -19,12 +20,13 @@ const Accout = () => {
             setLoading(false) 
         }
         getAccount() ; 
-    },[])
+    },[]) ;
+
     if (loading) return <h1>Loading..</h1>
     return (
     <div>
         {id}
-        <Profile {...account}/>
+        <Profile account={account} {...account}/>
         <AccountPosts userName={account.userName}/>
     </div>
     )

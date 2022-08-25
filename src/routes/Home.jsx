@@ -27,7 +27,8 @@ const Home = () => {
     // functions 
     const AddPost = async () => { 
         const Time = new Date()
-        await addDoc(PostCollectionRef, {...user ,post:inputValue , time:Time ,likes:0 , comments:0 ,commentsText:[] });
+        await addDoc(PostCollectionRef, {...user ,post:inputValue , time:Time ,likes:0 , comments:0  ,following:0 , followers:0  ,commentsText:[]   
+        });
         setInputValue('')
     }
     if (loading) return <h1>Loading...</h1>
