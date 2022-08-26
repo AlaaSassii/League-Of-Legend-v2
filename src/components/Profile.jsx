@@ -1,7 +1,7 @@
-import { doc, updateDoc } from 'firebase/firestore'
+import { collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { database } from '../firebase-config'
-
+import { useNavigate } from 'react-router-dom'
   const images1 = {
     image1:false ,image2:false , image3:false,image4:false , image5:false , image6:false
   } 
@@ -10,15 +10,57 @@ const Profile = ({userName, password , email , name , image , followers , follow
     console.log(userName , password ,email ,name , image , followers , following ,followingAccounts ,followersAccounts)
     const Data = {
         name,userName , email ,password ,image
-      }
+    }
+    const usersCollectionRef = collection(database,'posts')
+
+    let navigate = useNavigate() ; 
+    const [loading ,setLoading] = useState(false) ; 
     const [edit ,setEdit] = useState(false)
     const [inputs, setInputs] = useState(Data) ; 
     const [images ,setImages] = useState(images1)
   const intialImages = images1 ;  
   const updateUser = async (id) => {
     const userDoc = doc(database, "users", id);
-    await updateDoc(userDoc, {...account,inputs});
-  };
+    await updateDoc(userDoc, {...account,...inputs});
+    setEdit(false) ; 
+};
+    const deletePosts = async () => { 
+        const data = await getDocs(usersCollectionRef) ; 
+        const posts = data.docs.map(post => ({...post.data() , id: post.id }))
+        for (let i = 0 ; i < posts.length ; i++ ) { 
+            if(posts[i].userName === userName) {
+                const postDoc = doc(database, "posts", posts[i].id);
+                await deleteDoc(postDoc);
+            }
+            else {
+                const postDoc = doc(database, "posts", posts[i].id);
+                const newCommentsText = posts[i].commentsText.filter(post => { 
+                    return post.userName !== userName ;     
+                })
+                let newcomments = posts[i].comments ;
+                if (newCommentsText.length < posts[i].commentsText.length) {
+                    newcomments = posts[i].comments - (posts[i].commentsText.length - newCommentsText.length )
+                } 
+                const username = posts[i].likesUsername.find(post => post.userName === userName) ; 
+                if (username !== undefined){
+                    const likesUsername = posts[i].likesUsername.filter(post => post.userName !== userName) ; 
+                    const likes = posts[i].likes - 1 ; 
+                    await updateDoc(postDoc, {likes :posts[i].likes - 1 ,likesUsername,commentsText:newCommentsText ,comments:newcomments });
+                }
+                else { 
+                    await updateDoc(postDoc, {commentsText:newCommentsText , comments:newcomments});
+                }
+            }
+        }
+    }
+  const deleteUser = async (id) => { 
+    deletePosts() ; 
+    const userDoc = doc(database, "users", id);
+    await deleteDoc(userDoc);
+    navigate('/Signup') ; 
+
+  }
+  if (id === undefined) return <h1>No Data</h1>
   return (
     <div className='SignUp'>
         <div className="container">
@@ -31,7 +73,10 @@ const Profile = ({userName, password , email , name , image , followers , follow
         <div >{password}</div>
         <div>followers:{followers}</div>
         <div>following:{following}</div>
-        <button onClick={()=>setEdit(true)}>edit</button></> 
+        <button onClick={()=>setEdit(true)}>edit</button>
+        <button onClick={()=>{deleteUser(id)}}>delete</button>
+        
+        </> 
     :
         <>
         <div className='images'>

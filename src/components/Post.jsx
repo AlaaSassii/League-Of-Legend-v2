@@ -3,12 +3,12 @@ import { collection , getDocs ,  doc , updateDoc  } from 'firebase/firestore';
 import { database } from '../firebase-config';
 import { useNavigate } from 'react-router-dom';
 
-const Post = ({userName ,email , image , time , post ,user , comments , likes , commentsText , id }) => {
+const Post = ({userName ,email , image , time , post ,user , comments , likes , commentsText , id ,likesUsername }) => {
     const postId = id ; 
     const {Ref} = user
     const [commentInput ,setComment] = useState('') ; 
     let navigate = useNavigate()
-
+    const username = userName ; 
     function toDateTime(secs) {
         var t = new Date(1970, 0, 1); // Epoch
         t.setSeconds(secs);
@@ -22,7 +22,7 @@ const Post = ({userName ,email , image , time , post ,user , comments , likes , 
     }
     const Like = async (id) => {
         const userDoc = doc(database , 'posts',id) 
-        await updateDoc(userDoc,{likes:likes + 1 }) ; 
+        await updateDoc(userDoc,{likesUsername:[...likesUsername ,userName ],likes:likes + 1  }) ; 
     }
   return (
     <div className="post">

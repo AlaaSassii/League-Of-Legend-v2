@@ -27,8 +27,8 @@ const Posts = ({user}) => {
     <div>
         {
             posts.map(singlePost =>{
-              const {userName , post , email , image , comments,likes ,  time , id , commentsText} = singlePost ; 
-              return(<Post  image={image} userName={userName} post={post} email={email} time={time} comments={comments} commentsText={commentsText} likes={likes}  user={user}  id={id} />)}
+              const {userName , post , email , image , comments,likes ,  time , id , commentsText ,likesUsername} = singlePost ; 
+              return(<Post  image={image} userName={userName} post={post} email={email} time={time} comments={comments} commentsText={commentsText} likes={likes}  user={user}  id={id} likesUsername={likesUsername}/>)}
               )
           }
     </div>
