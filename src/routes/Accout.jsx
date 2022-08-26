@@ -27,7 +27,7 @@ const Accout = () => {
     <div>
         {id}
         <Profile account={account} {...account}/>
-        <AccountPosts userName={account.userName}/>
+        <AccountPosts id={account.id}/>
     </div>
     )
 }

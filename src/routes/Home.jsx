@@ -12,13 +12,13 @@ const Home = () => {
     const [loading ,setLoading] = useState(true)
     const [user , setUser] = useState('') ;  
     const [inputValue , setInputValue] = useState('') ; 
-    console.log(user)
+    console.log('user',user)
     const {id } = useParams() ; 
     useEffect(() => {
         setLoading(true) ; 
         const getUser = async () => { 
             const newData = await getDocs(usersCollectionRef) ; 
-            setUser(newData.docs.find(account => account.id == id).data()) ;
+            setUser({...newData.docs.find(account => account.id == id).data() ,id: newData.docs.find(account => account.id == id).id}) ;
             setLoading(false) 
         }
         getUser() ; 

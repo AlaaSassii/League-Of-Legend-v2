@@ -3,8 +3,8 @@ import { collection , getDocs ,  doc , updateDoc  } from 'firebase/firestore';
 import { database } from '../firebase-config';
 import { useNavigate } from 'react-router-dom';
 
-const Post = ({userName ,email , image , time , post ,user , comments , likes , commentsText , id ,likesUsername }) => {
-    const postId = id ; 
+const Post = ({userName ,email , image , time , post ,user , comments , likes , commentsText , id ,likesUsername , postId }) => {
+    console.log({userName ,email , image , time , post ,user , comments , likes , commentsText , id ,likesUsername })
     const {Ref} = user
     const [commentInput ,setComment] = useState('') ; 
     let navigate = useNavigate()
@@ -15,13 +15,14 @@ const Post = ({userName ,email , image , time , post ,user , comments , likes , 
         return t;
     }
     console.log('time',toDateTime(time.seconds))
-    const addComment = async (id)=>{
-        const userDoc = doc(database, "posts", id);
-        const newFields = { userName:user.userName,comment:commentInput , image:user.image };
+    const addComment = async (postId)=>{
+        const userDoc = doc(database, "posts", postId);
+        const newFields = { userName:user.userName,comment:commentInput , image:user.image , id};
         await updateDoc(userDoc,{commentsText:[...commentsText , newFields],comments:comments + 1});
+        setComment('')
     }
-    const Like = async (id) => {
-        const userDoc = doc(database , 'posts',id) 
+    const Like = async (postId) => {
+        const userDoc = doc(database , 'posts',postId) 
         await updateDoc(userDoc,{likesUsername:[...likesUsername ,userName ],likes:likes + 1  }) ; 
     }
   return (
@@ -51,8 +52,8 @@ const Post = ({userName ,email , image , time , post ,user , comments , likes , 
                 <img src={user.image} alt="" />
             </div>
             <input onChange={(e)=> setComment(e.target.value)} type="text" placeholder='comment' />
-            <button onClick={()=>addComment(id)}>add</button>
-            <button  onClick={()=>Like(id)} style={{marginLeft:'5px'}}>Like</button>
+            <button onClick={()=>addComment(postId)}>add</button>
+            <button  onClick={()=>Like(postId)} style={{marginLeft:'5px'}}>Like</button>
         </div>
         <div>{
             

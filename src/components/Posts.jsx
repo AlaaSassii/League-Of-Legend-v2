@@ -11,12 +11,12 @@ const Posts = ({user}) => {
     const [loading ,setLoading] = useState(false) ; 
 
     // navigation 
-    console.log(posts)
+    console.log('posts',posts)
     useEffect(()=>{
         setLoading(true)
         const getPosts = async () => { 
             const newData = await getDocs(PostCollectionRef) ; 
-            setPosts(newData.docs.map(user => ({...user.data() , id: user.id }) ).reverse()) ; 
+            setPosts(newData.docs.map(post => ({...post.data() , postId: post.id }) ).reverse()) ; 
             setLoading(false)
         }
         getPosts() ; 
@@ -25,11 +25,15 @@ const Posts = ({user}) => {
     if (loading) return <h1>Loading..</h1>
   return (
     <div>
-        {
+        {   
+          posts.length > 0 ?
             posts.map(singlePost =>{
-              const {userName , post , email , image , comments,likes ,  time , id , commentsText ,likesUsername} = singlePost ; 
-              return(<Post  image={image} userName={userName} post={post} email={email} time={time} comments={comments} commentsText={commentsText} likes={likes}  user={user}  id={id} likesUsername={likesUsername}/>)}
-              )
+              const {userName , post , email , image , comments,likes ,  time , postId , commentsText ,likesUsername , id} = singlePost ; 
+              return(
+              <Post  image={image} userName={userName} post={post} email={email} time={time} comments={comments} commentsText={commentsText} likes={likes} id={id}  user={user}  postId={postId} likesUsername={likesUsername}/>
+              )}
+              ) :
+              <h1>No Data..</h1>
           }
     </div>
   )

@@ -2,7 +2,7 @@ import React , {useEffect, useState} from 'react'
 import { database } from '../firebase-config'
 import { collection, getDocs } from 'firebase/firestore'
 import Post from './Post'
-const AccountPosts = ({userName}) => {
+const AccountPosts = ({ id}) => {
     const  postsCollectionRef = collection(database , 'posts') 
     const [posts, setPosts] = useState([])  ;
     const [loading ,setLoading] = useState(true)
@@ -11,8 +11,8 @@ const AccountPosts = ({userName}) => {
         const getPosts = async () => {
             setLoading(true) ;  
             const posts1  = await getDocs(postsCollectionRef) ; 
-            setPosts(posts1.docs.map(post => ({...post.data(),id : post.id}))) ; 
-            setPosts(posts => posts.filter(post => post.userName === userName)) ; 
+            setPosts(posts1.docs.map(post => ({...post.data()}))) ; 
+            setPosts(posts => posts.filter(post => post.id === id)) ; 
             setLoading(false) ; 
         }   
         getPosts() ; 

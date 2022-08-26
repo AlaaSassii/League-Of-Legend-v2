@@ -19,7 +19,24 @@ const Profile = ({userName, password , email , name , image , followers , follow
     const [inputs, setInputs] = useState(Data) ; 
     const [images ,setImages] = useState(images1)
   const intialImages = images1 ;  
+  const updatePosts = async (id) => { 
+    const data = await getDocs(usersCollectionRef) ; 
+    const posts = data.docs.map(post => ({...post.data() }))
+    for (let i = 0 ; i < posts.length ; i++ ) {
+        const postDoc = doc(database, "posts", posts[i].id);
+        if(posts[i].id === id) {
+            await updateDoc(postDoc, {...account,...inputs}); // not the best approach ; 
+        }
+        for(let j = 0 ; j < posts[i].commentsText.length ; i++ ) { 
+            if (posts[i].commentsText[j].id === id) { 
+            await updateDoc(postDoc, {...account,commentsText:[...posts[i].commentsText ,{...posts[i].commentsText ,...inputs} ]}); // not the best approach ; 
+            }
+        }
+            
+        
+  }}
   const updateUser = async (id) => {
+    updatePosts() ; 
     const userDoc = doc(database, "users", id);
     await updateDoc(userDoc, {...account,...inputs});
     setEdit(false) ; 
