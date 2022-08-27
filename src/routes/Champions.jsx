@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import  axios  from 'axios';
-const Champion = () => {
+import { useNavigate } from 'react-router-dom';
+const Champions = () => {
+    let navigate = useNavigate() ; 
     const [v ,setV] = useState('12.10.1') ; 
     const [loading, setLoading] = useState(true);
     const [Champions,setChampions] = useState([]) ;
@@ -8,12 +10,6 @@ const Champion = () => {
     const [value , setValue] = useState('') ; 
     const types = ["Assassin","Fighter","Mage","Marksman","Support","Tank"]
 
-    const updateVersion =() =>{
-        console.log("asdasd")
-        axios('https://ddragon.leagueoflegends.com/api/versions.json')
-            .then(resp => setV(resp.data[0]))
-            .catch(err => console.log(err))
-    }
 
     const  filterTypes = (type)=>{
         setValue('') ; 
@@ -36,7 +32,7 @@ const Champion = () => {
     }
 
     useEffect(()=> {
-        updateVersion() ; 
+      
         setLoading(true) ; 
         axios(`http://ddragon.leagueoflegends.com/cdn/${v}/data/en_US/champion.json`)
             .then(resp => {
@@ -70,7 +66,7 @@ const Champion = () => {
             <div  className="champions">
             {Champions.map(champ => {
                 return(
-                    <div key={champ.id} >
+                    <div key={champ.id}  onClick={()=>navigate(`/Champions/${champ.id}`)}>
                     <img src={`http://ddragon.leagueoflegends.com/cdn/${v}/img/champion/${champ.image.full}`} />
                     <h4 >
                     {champ.name}
@@ -83,4 +79,4 @@ const Champion = () => {
   )
 }
 
-export default Champion
+export default Champions
