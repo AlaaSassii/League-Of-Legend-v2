@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom'
   } 
 const Profile = ({userName, password , email , name , image , followers , following
 ,followingAccounts , followersAccounts , id , account}) => {
-    console.log(userName , password ,email ,name , image , followers , following ,followingAccounts ,followersAccounts)
+    // console.log(userName , password ,email ,name , image , followers , following ,followingAccounts ,followersAccounts) 
     const Data = {
         name,userName , email ,password ,image
     }
-    const usersCollectionRef = collection(database,'posts')
+    const postsCollectionRef = collection(database,'posts')
 
     let navigate = useNavigate() ; 
     const [loading ,setLoading] = useState(false) ; 
@@ -20,29 +20,32 @@ const Profile = ({userName, password , email , name , image , followers , follow
     const [images ,setImages] = useState(images1)
   const intialImages = images1 ;  
   const updatePosts = async (id) => { 
-    const data = await getDocs(usersCollectionRef) ; 
-    const posts = data.docs.map(post => ({...post.data() }))
+    const data = await getDocs(postsCollectionRef) ; 
+    const posts = data.docs.map(post => ({...post.data() ,postId:post.id}))
     for (let i = 0 ; i < posts.length ; i++ ) {
-        const postDoc = doc(database, "posts", posts[i].id);
+        console.log(posts[i].postId)
+        const postDoc = doc(database, "posts", posts[i].postId);
         if(posts[i].id === id) {
-            await updateDoc(postDoc, {...account,...inputs}); // not the best approach ; 
+            await updateDoc(postDoc, {...posts[i],...inputs}); // not the best approach ; 
         }
-        for(let j = 0 ; j < posts[i].commentsText.length ; i++ ) { 
-            if (posts[i].commentsText[j].id === id) { 
-            await updateDoc(postDoc, {...account,commentsText:[...posts[i].commentsText ,{...posts[i].commentsText ,...inputs} ]}); // not the best approach ; 
-            }
+        console.log('post' , posts[i].commentsText.length) ; 
+     
+        const arr = posts[i].commentsText.map(comment => { 
+            if (comment.id === id) return ({...comment , userName:inputs.userName , image:inputs.image} ); 
+            else return comment 
+        })
+        console.log(arr)
+        await updateDoc(postDoc, {...posts[i],...inputs,commentsText:arr});
         }
-            
         
-  }}
+  }
   const updateUser = async (id) => {
-    updatePosts() ; 
-    const userDoc = doc(database, "users", id);
-    await updateDoc(userDoc, {...account,...inputs});
-    setEdit(false) ; 
+      const userDoc = doc(database, "users", id);
+      await updateDoc(userDoc, {...account,...inputs});
+      updatePosts(id) ; 
 };
     const deletePosts = async () => { 
-        const data = await getDocs(usersCollectionRef) ; 
+        const data = await getDocs(postsCollectionRef) ; 
         const posts = data.docs.map(post => ({...post.data() , id: post.id }))
         for (let i = 0 ; i < posts.length ; i++ ) { 
             if(posts[i].userName === userName) {
@@ -120,3 +123,10 @@ const Profile = ({userName, password , email , name , image , followers , follow
 }
 
 export default Profile
+
+   // for(let j = 0 ; j < posts[i].commentsText.length ; j++ ) {  
+            // if (posts[i].commentsText[j].id === id) { 
+                // console.log('trueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+            // await updateDoc(postDoc, {...posts[i],...inputs,commentsText:[...posts[i].commentsText ,{...posts[i].commentsText[j] ,userName: inputs.userName , image:inputs.image } ]}); // not the best approach ; 
+                
+            // }
