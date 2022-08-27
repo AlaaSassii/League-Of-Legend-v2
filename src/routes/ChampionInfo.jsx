@@ -23,15 +23,18 @@ const ChampionInfo = () => {
     const {skins,spells,name,image} = data 
    
    return (
-    <div>
-        {loading ? <h1>Loading..</h1>: <>
-        {/* <h1>{name}</h1> */}
-
-        <BackgroundInfo {...data}/>
+    <div className='champions-info'>
+      <div className='container'>
+        {loading ?
+         <h1>Loading..</h1>
+         : 
+        <>
         <Info {...data}/>
         <Skins skins={skins} name={name}/>
-        </>}    
-
+        </>
+        
+        }    
+      </div>
     </div>
   )
 }

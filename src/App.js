@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from './components/Navbar';
 import './App.css'
-import {Route , Routes , BrowserRouter} from 'react-router-dom'
+import {Route , Routes , BrowserRouter as Router} from 'react-router-dom'
 import Landing from './routes/Landing';
 import SignUp from './routes/SignUp';
 import Home from './routes/Home';
@@ -11,7 +11,7 @@ import Champions from './routes/Champions';
 import ChampionInfo from './routes/ChampionInfo';
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Navbar/>
       <Routes>
         <Route path='/' element={<Landing/>} /> 
@@ -23,7 +23,7 @@ function App() {
         <Route path='/Champions/:id' element={<ChampionInfo/>} />
 
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
