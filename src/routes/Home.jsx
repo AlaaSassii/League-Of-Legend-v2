@@ -33,9 +33,11 @@ const Home = () => {
     }
     if (loading) return <h1>Loading...</h1>
     else return (
+    <div className='Home'>
     <div className='container' style={{margin:'auto'}}>
         <input type="text" placeholder='Add a Post' value={inputValue} onChange={e => setInputValue(e.target.value) }/> <button onClick={AddPost}>Create</button>
         <Posts user={user}/>
+    </div>
     </div>
   )
 }

@@ -23,13 +23,12 @@ const Profile = ({userName, password , email , name , image , followers , follow
     const data = await getDocs(postsCollectionRef) ; 
     const posts = data.docs.map(post => ({...post.data() ,postId:post.id}))
     for (let i = 0 ; i < posts.length ; i++ ) {
+        console.log(posts[i])
         console.log(posts[i].postId)
         const postDoc = doc(database, "posts", posts[i].postId);
         if(posts[i].id === id) {
             await updateDoc(postDoc, {...posts[i],...inputs}); // not the best approach ; 
         }
-        console.log('post' , posts[i].commentsText.length) ; 
-     
         const arr = posts[i].commentsText.map(comment => { 
             if (comment.id === id) return ({...comment , userName:inputs.userName , image:inputs.image} ); 
             else return comment 
@@ -40,9 +39,9 @@ const Profile = ({userName, password , email , name , image , followers , follow
         
   }
   const updateUser = async (id) => {
+      updatePosts(id) ; 
       const userDoc = doc(database, "users", id);
       await updateDoc(userDoc, {...account,...inputs});
-      updatePosts(id) ; 
 };
     const deletePosts = async () => { 
         const data = await getDocs(postsCollectionRef) ; 
