@@ -9,6 +9,7 @@ import PostInfo from './components/PostInfo';
 import Accout from './routes/Accout';
 import Champions from './routes/Champions';
 import ChampionInfo from './routes/ChampionInfo';
+import MatchHistory from './routes/MatchHistory';
 function App() {
   return (
     <Router>
@@ -21,7 +22,7 @@ function App() {
         <Route path='/Account/:id' element={<Accout/>} />
         <Route path='/Champions' element={<Champions/>} />
         <Route path='/Champions/:id' element={<ChampionInfo/>} />
-
+        <Route path="/Matchhistroy"  element={<MatchHistory/>} />
       </Routes>
     </Router>
   );
