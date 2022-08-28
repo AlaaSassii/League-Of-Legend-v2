@@ -81,17 +81,21 @@ const Profile = ({userName, password , email , name , image , followers , follow
   }
   if (id === undefined) return <h1>No Data</h1>
   return (
-    <div className='SignUp'>
+    <div className='Account'>
         <div className="container">
        {
         !edit ?<>
+        <div className='image'>
        <img src={image} />
-        <div>{name}</div>
-        <div>{userName}</div>
-        <div>{email}</div>
-        <div >{password}</div>
-        <div>followers:{followers}</div>
-        <div>following:{following}</div>
+       </div>
+        <div>
+        <div className='info'>name : {name}</div>
+        <div className='info'>username : {userName}</div>
+        <div className='info'>email :{email}</div>
+        <div className='info'>password :{password}</div>
+        <div className='info'>followers:{followers}</div>
+        <div className='info'>following:{following}</div>
+        </div>
         <button onClick={()=>setEdit(true)}>edit</button>
         <button onClick={()=>{deleteUser(id)}}>delete</button>
         
@@ -106,10 +110,12 @@ const Profile = ({userName, password , email , name , image , followers , follow
         <div><img onClick={e =>{setInputs({...inputs , image:e.target.src});setImages({...intialImages , image5:true})}}src="https://pbs.twimg.com/media/FISX2MhXwAkoIYY.jpg" className={images.image5&& 'nofilter'} /></div>
         <div><img onClick={e =>{setInputs({...inputs , image:e.target.src});setImages({...intialImages , image6:true})}}src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqAF1d1NkjYDlGLijo8Q8zP5U7Emz5rarp3iFauEvqFXWZnXIv3UK4mXlohn-DqZDZ-ys&usqp=CAU"  className={images.image6&& 'nofilter'}/></div>
     </div>
+    <div className="input">
         <input type="text" placeholder='name' value={inputs.name} onChange={e => setInputs({...inputs,name:e.target.value})} />
         <input type="text" placeholder='username' value={inputs.userName} onChange={e => setInputs({...inputs,userName:e.target.value})} />
         <input type="text" placeholder='email'  value={inputs.email} onChange={e => setInputs({...inputs,email:e.target.value})}  />
         <input type="password" placeholder='password' value={inputs.password} onChange={e => setInputs({...inputs,password:e.target.value})}/>
+        </div>
         <div>followers:{followers}</div>
         <div>following:{following}</div>
         <button onClick={()=>setEdit(false)}>cancel</button> 
