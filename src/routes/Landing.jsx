@@ -28,7 +28,7 @@ const Landing = () => {
     <div className='champions-section'>
       <div className='container'>
       <div className='image'>
-        <img src="https://wallpaperaccess.com/full/7975136.png" alt="yone.png" />
+        <img src="https://www.mobafire.com/images/champion/skins/landscape/yone-dawnbringer-762x.jpg" alt="yone.png" />
       </div>
       <div className='text'>
       <h3>Champions List</h3>
@@ -74,48 +74,34 @@ const Landing = () => {
     <div className='skins-section'>
       <h3>Our New Skins</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-      <div className="contanier">
+      <div className="container">
         <div className='box'>
-            <img src="https://preview.redd.it/rhj8icdltfj71.png?auto=webp&s=4467b0ce268ce40ba1aa828006b1ee329ea4bc1d" alt="" />
+            <img src="https://turbosmurfs.gg/storage/splash/Kayn_1.jpg" alt="" />
             <div className='layer'>
               <div className='info'>
               <h3>PENTAKILL MORDAISER</h3>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam dolor rem consequuntur ullam veritatis!</p>
-              <ul>
-                <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</li>
-                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quis optio similique?</li>
-                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-              </ul>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam dolor rem consequuntur ullam veritatis! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat quaerat iusto vero repellendus fugit illum doloribus quia cupiditate quis, necessitatibus optio natus voluptates deleniti qui eveniet, ex, quae officiis magnam.</p>
+             
               </div>
             </div>
         </div>
 
         <div className='box'>
-            <img src="https://preview.redd.it/rhj8icdltfj71.png?auto=webp&s=4467b0ce268ce40ba1aa828006b1ee329ea4bc1d" alt="" />
+            <img src="https://cdngarenanow-a.akamaihd.net/webmain/static/pss/lol/items_splash/kayn_15.jpg" alt="" />
             <div className='layer'>
               <div className='info'>
               <h3>PENTAKILL MORDAISER</h3>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam dolor rem consequuntur ullam veritatis!</p>
-              <ul>
-                <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</li>
-                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quis optio similique?</li>
-                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-              </ul>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam dolor rem consequuntur ullam veritatis! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat quaerat iusto vero repellendus fugit illum doloribus quia cupiditate quis, necessitatibus optio natus voluptates deleniti qui eveniet, ex, quae officiis magnam.</p>
               </div>
             </div>
         </div>
 
         <div className='box'>
-            <img src="https://preview.redd.it/rhj8icdltfj71.png?auto=webp&s=4467b0ce268ce40ba1aa828006b1ee329ea4bc1d" alt="" />
+            <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kayn_8.jpg" alt="" />
             <div className='layer'>
               <div className='info'>
               <h3>PENTAKILL MORDAISER</h3>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam dolor rem consequuntur ullam veritatis!</p>
-              <ul>
-                <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</li>
-                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quis optio similique?</li>
-                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-              </ul>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam dolor rem consequuntur ullam veritatis! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat quaerat iusto vero repellendus fugit illum doloribus quia cupiditate quis, necessitatibus optio natus voluptates deleniti qui eveniet, ex, quae officiis magnam.</p>
               </div>
             </div>
         </div>

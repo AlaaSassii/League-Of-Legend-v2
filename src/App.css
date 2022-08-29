@@ -357,7 +357,7 @@ body{
   .boxes-with-images .text h3 { 
   }
   .boxes-with-images .text p { 
-
+    line-height: 1.4
   }
   .skins-section{
     padding: 100px 0 ;
@@ -377,19 +377,22 @@ body{
     width: 80%;
     text-align: center;
     display: grid;
-    grid-template-columns: repeat(auto-fill , minmax(400px , 1fr));
+    grid-template-columns: repeat(auto-fill , minmax(350px , 1fr));
+    gap:40px ; 
+    margin-left: auto;
   }
   .skins-section .box {
     border-radius: 10px;
     margin-bottom: 30px;
-    width: 100%;
     position: relative;
     overflow: hidden;
   }
   .skins-section img {
+    object-fit: fill;
+    max-height: 400px;
   }
   .skins-section .layer { 
-    background-color: var(--primary-gray);
+    background-color: var(--secondary-black);
     opacity: .0;
     height: 100%;
     width: 100%;
@@ -397,6 +400,15 @@ body{
     top:0 ; 
     left: 0 ; 
     transition: .3s; 
+    color: white;
+    overflow: hidden;
+
+  }
+  .skins-section .layer h3{
+    margin-bottom: 10px;
+  }
+  .skins-section .layer p{
+    line-height: 1.6;
   }
   .skins-section .layer:hover {
     opacity: .7;
@@ -412,7 +424,7 @@ body{
     transition: .3s;
   }
   .skins-section .layer:hover .info { 
-    bottom: 80% ; 
+    bottom:40% ; 
 
   }
 
