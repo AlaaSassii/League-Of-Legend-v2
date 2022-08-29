@@ -1,6 +1,6 @@
 import React, { useEffect ,useState} from 'react'
 import {useParams} from 'react-router-dom'
-import { collection , getDocs , addDoc } from 'firebase/firestore';
+import { collection , getDocs , addDoc, updateDoc  ,doc} from 'firebase/firestore';
 import { database } from '../firebase-config';
 import Posts from '../components/Posts';
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
     const [loading ,setLoading] = useState(true)
     const [user , setUser] = useState('') ;  
     const [inputValue , setInputValue] = useState('') ; 
-    console.log('user',user)
+    console.log('UUUUSSSSERRRRR',user)
     const {id } = useParams() ; 
     useEffect(() => {
         setLoading(true) ; 
@@ -26,8 +26,15 @@ const Home = () => {
    
     // functions 
     const AddPost = async () => { 
-        const Time = new Date()
-        await addDoc(PostCollectionRef, {...user ,post:inputValue , time:Time ,likes:0 , comments:0  ,following:0 , followers:0  ,commentsText:[]   ,likesUsername:[] 
+        // we will add a post and create new key in users called posts and it will help us 
+        // get the post that created by the user 
+        // 1# create a Id 
+        const postId = new Date().getTime() ; 
+        // 2# Add postsId in user first 
+        const userDoc = doc(database , 'users' , user.id) ;
+        await updateDoc(userDoc , {...user ,postsId:[...user.postsId , postId]})   ; 
+        // 3# Create that post  
+        await addDoc(PostCollectionRef, {...user ,post:inputValue , time:new Date() ,likes:0 , comments:0  ,commentsText:[]   ,likesUsername:[] ,postId ,
         });
         setInputValue('')
     }

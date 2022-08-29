@@ -23,7 +23,9 @@ const SignUp = () => {
     const createUser = async (id) => {
       const {name , userName , email , password , image } = inputs 
       const Ref = id ; 
-      await addDoc(accountsRef, {name , userName , email , password , image , Ref, following:0 , followers:0 , followingAccounts:[] , followersAccounts : []  });
+      await addDoc(accountsRef, {name , userName , email , password , image , Ref, following:0 , followers:0 , followingAccounts:[] , followersAccounts : [] , postsId:[] ,commentPost:[] });
+// postsId => to catch the post that we created  = [] 
+// commentPost => to catch the comments that created = []
       const newData = await getDocs(accountsRef) ; 
       const idz = newData.docs.find(post => post.data().Ref === id )
 

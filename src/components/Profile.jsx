@@ -1,5 +1,5 @@
 import { collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { database } from '../firebase-config'
 import { useNavigate } from 'react-router-dom'
   const images1 = {
@@ -15,33 +15,56 @@ const Profile = ({userName, password , email , name , image , followers , follow
 
     let navigate = useNavigate() ; 
     const [loading ,setLoading] = useState(false) ; 
+    const [posts ,setPosts] = useState([]) ; 
     const [edit ,setEdit] = useState(false)
     const [inputs, setInputs] = useState(Data) ; 
     const [images ,setImages] = useState(images1)
-  const intialImages = images1 ;  
-  const updatePosts = async (id) => { 
-    const data = await getDocs(postsCollectionRef) ; 
-    const posts = data.docs.map(post => ({...post.data() ,postId:post.id}))
-    for (let i = 0 ; i < posts.length ; i++ ) {
-        console.log(posts[i])
-        console.log(posts[i].postId)
-        const postDoc = doc(database, "posts", posts[i].postId);
-        if(posts[i].id === id) {
-            await updateDoc(postDoc, {...posts[i],...inputs}); // not the best approach ; 
-        }
-        const arr = posts[i].commentsText.map(comment => { 
-            if (comment.id === id) return ({...comment , userName:inputs.userName , image:inputs.image} ); 
-            else return comment 
-        })
-        console.log(arr)
-        await updateDoc(postDoc, {...posts[i],...inputs,commentsText:arr});
-        }
-        
-  }
+  const intialImages = images1 ;
+
+  useEffect(()=>{
+    setLoading(true)
+    const getPosts = async () => { 
+        const  data = await getDocs(postsCollectionRef)  ; 
+        const posts = data.docs.map( post => ({...post.data() , ID1:post.id})) ;
+        setPosts(posts) ; 
+    }
+    getPosts() ; 
+    setLoading(false) ; 
+
+  },[]) 
+
+
+//   updates 
+const updateComment = async () => { 
+    for(let i = 0 ; i < account.commentPost.length ; i++){
+        console.log(`accountPost[${i}]` ,account.accountPost[i] )
+        const post = posts.find(post => post.postId == account.commentPost[i] ) ;
+        console.log('post',post) 
+        const POSTID = post.ID1 ; 
+        const editComments = post.commentsText.map(comment => 
+            {
+                if (comment.userName === account.useName) return {...comment , userName , image }
+                else return comment 
+            })
+      const postDoc = doc(database, "posts", POSTID);
+      await updateDoc(postDoc, {...post,commentsText:[...editComments]});
+    }
+}
+const updatePost = async () => { 
+    for(let i = 0 ; i < account.postsId.length ; i++) {
+        const post = posts.find(post => post.postId == account.postsId[i] ) ; 
+        const POSTID = post.ID1 ; 
+        const postDoc = doc(database, "posts", POSTID);
+        const {name,userName , email ,password ,image} = inputs ;  
+        await updateDoc(postDoc, {...post , userName , email , image} );
+
+    }
+}
   const updateUser = async (id) => {
-      updatePosts(id) ; 
-      const userDoc = doc(database, "users", id);
-      await updateDoc(userDoc, {...account,...inputs});
+    updateComment() ; 
+    updatePost()
+    const userDoc = doc(database, "users", id);
+    await updateDoc(userDoc, {...account,...inputs});
 };
     const deletePosts = async () => { 
         const data = await getDocs(postsCollectionRef) ; 

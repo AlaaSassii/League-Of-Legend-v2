@@ -16,7 +16,7 @@ const Posts = ({user}) => {
         setLoading(true)
         const getPosts = async () => { 
             const newData = await getDocs(PostCollectionRef) ; 
-            setPosts(newData.docs.map(post => ({...post.data() , postId: post.id }) ).reverse()) ; 
+            setPosts(newData.docs.map(post => ({...post.data() , ID: post.id }) ).reverse()) ; 
             setLoading(false)
         }
         getPosts() ; 
@@ -28,9 +28,9 @@ const Posts = ({user}) => {
         {   
           posts.length > 0 ?
             posts.map(singlePost =>{
-              const {userName , post , email , image , comments,likes ,  time , postId , commentsText ,likesUsername , id} = singlePost ; 
+              const {userName , post , email , image , comments,likes ,  time , ID , commentsText ,likesUsername , id , postId} = singlePost ; 
               return(
-              <Post  image={image} userName={userName} post={post} email={email} time={time} comments={comments} commentsText={commentsText} likes={likes} id={id}  user={user}  postId={postId} likesUsername={likesUsername}/>
+              <Post  image={image} userName={userName} post={post} email={email} time={time} comments={comments} commentsText={commentsText} likes={likes} id={id}  user={user}  ID={ID} likesUsername={likesUsername} postId={postId }/>
               )}
               ) :
               <h1>No Data..</h1>

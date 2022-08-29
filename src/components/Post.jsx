@@ -3,8 +3,8 @@ import { collection , getDocs ,  doc , updateDoc  } from 'firebase/firestore';
 import { database } from '../firebase-config';
 import { useNavigate } from 'react-router-dom';
 
-const Post = ({userName ,email , image , time , post ,user , comments , likes , commentsText , id ,likesUsername , postId }) => {
-    console.log({userName ,email , image , time , post ,user , comments , likes , commentsText , id ,likesUsername })
+const Post = ({userName ,email , image , time , post ,user , comments , likes , commentsText , id ,likesUsername , ID , postId }) => {
+    console.log('id',id)
     const {Ref} = user
     const [commentInput ,setComment] = useState('') ; 
     let navigate = useNavigate()
@@ -15,14 +15,23 @@ const Post = ({userName ,email , image , time , post ,user , comments , likes , 
         return t;
     }
     console.log('time',toDateTime(time.seconds))
-    const addComment = async (postId)=>{
-        const userDoc = doc(database, "posts", postId);
+    const addComment = async (ID)=>{
+        // 2# Add commentPost (id no9sdu) to the User 
+        const userDoc = doc(database , 'users' , user.id) ;
+        console.log(postId)
+        await updateDoc(userDoc , {...user , commentPost:[...user.commentPost , postId]}); 
+// commentPost:[...user.commentPost , postId]
+        // 3# add Comment   
+        const postDoc = doc(database, "posts", ID);
+        // nlawju b userName 
         const newFields = { userName:user.userName,comment:commentInput , image:user.image , id};
-        await updateDoc(userDoc,{commentsText:[...commentsText , newFields],comments:comments + 1});
+        await updateDoc(postDoc,{commentsText:[...commentsText , newFields],comments:comments + 1});
+        console.log(3333333333333333) ;
+
         setComment('')
     }
-    const Like = async (postId) => {
-        const userDoc = doc(database , 'posts',postId) 
+    const Like = async (ID) => {
+        const userDoc = doc(database , 'posts',ID) 
         await updateDoc(userDoc,{likesUsername:[...likesUsername ,userName ],likes:likes + 1  }) ; 
     }
   return (
@@ -39,7 +48,7 @@ const Post = ({userName ,email , image , time , post ,user , comments , likes , 
             </div>
         </div>
         <div className="post-text" onClick={()=>{
-            navigate(`/Home/${Ref}/${postId}`) ; 
+            navigate(`/Home/${Ref}/${ID}`) ; 
         }}>
            {post}
         </div>
@@ -52,8 +61,8 @@ const Post = ({userName ,email , image , time , post ,user , comments , likes , 
                 <img src={user.image} alt="" />
             </div>
             <input onChange={(e)=> setComment(e.target.value)} type="text" placeholder='comment' />
-            <button onClick={()=>addComment(postId)}>add</button>
-            <button  onClick={()=>Like(postId)} style={{marginLeft:'5px'}}>Like</button>
+            <button onClick={()=>addComment(ID)}>add</button>
+            <button  onClick={()=>Like(ID)} style={{marginLeft:'5px'}}>Like</button>
         </div>
         <div>{
             
