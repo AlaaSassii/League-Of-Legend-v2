@@ -182,6 +182,104 @@ body{
   .signin a {
     color:var(--primary-red)
   }
+  .categories {
+    margin-top: 50px;
+
+  }
+  .Menu {
+    margin: auto;
+    font-size: 30px ;
+    text-align: center  ;
+    margin-bottom: 30px ;
+  }
+  .categories .container{
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px , 1fr));
+    gap: 30px;
+  }
+  .categories .container > div { 
+    width: 100%;
+    padding:20px 10px ; 
+    background-color: var(--primary-red);
+    color:white ; 
+    border-radius: 10px ;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 100px 24px;
+  }
+
+
+  .champions-section{
+    
+    padding:100px  ; 
+    background-color: var(--primary-gray-2);
+    margin-top: 100px;
+  }
+  .champions-section .container { 
+    display: flex;
+    width: 80%;
+    
+  } 
+  .champions-section .image { 
+    width: 600px;
+    padding:20px
+  }
+  
+  @media(max-width: 991px){
+    .champions-section .container{
+      width: 100%;
+    }
+    .champions-section .image {
+      display: none;
+    }
+  }
+  .champions-section .image img { 
+    width: 100%;
+  }
+  .champions-section .text {
+    flex-basis: 50%; 
+    width: 100%;
+  }
+  .champions-section .text { 
+
+  }
+  .champions-section .text h3 { 
+    font-size: 46px;
+    margin-top: 20px;
+    margin-bottom:20px ;
+    color:var(--primary-red) 
+  }
+  .champions-section .text p{ 
+    font-size: 22px;
+    margin-bottom: 30px ;
+
+  }
+  .champions-section .text a{ 
+    font-size: 20px;
+    width: fit-content;
+    background-color: var(--primary-red);
+    color: white ;
+    text-decoration: none;
+    padding: 10px ;
+    margin-top: 30px ;
+    transition: .3s;
+  }
+  .champions-section .text a:hover {
+    background-color: var(--primary-red-3);
+  }
+  @media (max-width:991px){
+    .champions-section .text p{
+      font-size: 18px;
+    }
+     .champions-section .text a{ 
+    font-size: 18px;
+ 
+  }
+  }
+
 /* End Landing */
 
 /* Start Navbar */
