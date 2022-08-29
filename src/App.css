@@ -127,7 +127,62 @@ body{
 }
 }
 /* End Global Rules */  
+/* Star Landing */
+  .landing { 
+    margin:100px 0 0 0 ;
+    background-color: var(--secondary-black);
+    position: relative;
+  }
+  .section1 { 
+    width: 100%;
+    min-height: 500px;
+    padding:100px ;   
+    color:white ; 
+    width: 60%;
+  }
+  .section1 h1 { 
+    font-size: 64px ;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .section1 p { 
+    font-size: 18px ;
+    margin-bottom: 10px;
+    color: var(--primary--2gray);
+  }
+  .signin{
+    position: absolute;
+    max-width: 400px;
+    background-color: var(--secondary-black);
+    color:white ; 
+    padding:10px ; 
+    border-radius: 10px ;
+    bottom:-45px ; 
+    right: 100px;
+  } 
+  .signin h3{
+    color: var(--primary-red);
+    text-align: center;
+    padding-bottom:20px ;
 
+  }
+  .signin input{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding:10px 5px ; 
+  }
+  .signin p{
+    font-size: 15px;
+    font-weight: 500;
+    color:var(--primary-gray-2) ; 
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .signin a {
+    color:var(--primary-red)
+  }
+/* End Landing */
 
 /* Start Navbar */
 nav{
@@ -266,71 +321,6 @@ nav > .container > ul li {
 /* Start SignUp */
 
 /* End SignUp */
-
-
-/*  Start Landing */
-  .singin{
-    background:url('./assets/210820_HextechMayhem_KA_Master_RGB.0.jpg') no-repeat center/cover; 
-    width: 100%;
-    height: 100vh;
-    position: relative;    
-  }
-  .singin .container{
-    position: absolute;
-    top:50% ; 
-    left: 50% ; 
-    border: solid 2px deeppink;
-    transform: translate(-50%);
-
-  }
-  .singin .form { 
-    background-color: var(--secondary-black);
-    color:white  ;
-    width: 400px;
-    border-radius: 10px ;
-    padding:10px ; 
-    text-align: center;
-  }
-  .singin .form  h2 { 
-    padding:10px ; 
-  }
-  .singin .form input { 
-    display: block;
-    margin-bottom: 7px ;
-    width: 100%;
-    padding:10px 5px ; 
-    outline:none ; 
-  }
-  .singin .form p { 
-    font-size: 13px ;
-    font-weight: 400;
-    color: var(--primary-gray-3);
-    margin-bottom: 10px ;
-  }
-  .singin .form a { 
-    color: var(--primary-red);
-  }
-  .singin .form button { 
-    display: flex;
-    align-items: center;
-    justify-content: center ; 
-    background-color: #ba181b;
-    color:white ; 
-    padding:10px 5px ; 
-    border-radius: 5px ;
-    width: 100px;
-    border:none ; 
-    outline : none ; 
-    margin-left: auto;
-    margin-right:0;
-    transition: .3s;
-  }
-  .singin .form button:hover { 
-    background-color:#a4161a ;
-  } 
-  /*  End Landing*/
-
-
 
 
 

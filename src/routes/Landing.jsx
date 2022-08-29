@@ -2,20 +2,22 @@ import React from 'react'
 
 const Landing = () => {
   return (
-    <div className='singin'>
-        <div className='container'>
-        <h1>League Of Legedns</h1>
-        <div className='form'>
-            <h2>Sign In</h2>
-            <input placeholder='email'/> 
-            <input placeholder='password'/>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, amet quis.</p>
-            <p>don't have account <a href="SingUp">Sign Up</a> </p>
-            <button>Sign In</button>
-        </div>
-        </div>
-        
+    <>
+    <div className='landing'>
+      <div className='section1'>
+          <h1>Section: One</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis adipisci recusandae in ut nulla, sed vero quia alias ducimus quod exercitationem ex repellendus nemo non aspernatur repellat consequatur maxime quos.</p>
+
+      </div>
+      <div className='signin'>
+        <h3>Sign In</h3>
+        <input type="text" placeholder='email' />
+        <input type="password" placeholder='password' />
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum.</p>
+        <p>Lorem, ipsum dolor. <a href="">Sign Up</a></p>
+      </div>
     </div>
+    </>
   )
 }
 
