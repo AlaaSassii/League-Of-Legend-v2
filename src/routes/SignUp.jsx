@@ -36,10 +36,39 @@ const SignUp = () => {
       if (inputs.name && inputs.userName && inputs.email && inputs.password && inputs.copassword && inputs.image) return false
       else return true 
       }
+      const Check2 =async () => { 
+      const data = await getDocs(accountsRef) ; 
+      const newData = data.docs.map(user => ({...user.data() ,id:user.id })) ;
+      const user =newData.find(data => data.email === inputs.email || data.userName === inputs.userName) ; 
+      const condition = false ;  
+      if(user===undefined) {
+        setShowAlert({show:true , text:'There is an account that has the same userName and email !!'})
+        condition = true ; 
+      } 
+      else {condition = false } ;
+      return condition 
+      // const {email , userName } = newData ; 
+      // let condition = false ; 
+      // if(email === inputs.email && userName === inputs.userName  )
+      //  {
+      //   setShowAlert({show:true , text:'There is an account that has the same userName and email !!'})
+      //   condition = true ; 
+      //  }
+      //  if(email !== inputs.email && userName === inputs.userName){ 
+      //   setShowAlert({show:true , text:'There is an account that has the same userName !!'})
+      //   condition = true ; 
+      // }
+      //  if(email === inputs.email && userName !== inputs.userName){ 
+      //   setShowAlert({show:true , text:'There is an account that has the same email !!'})
+      //   condition = true ; 
+      // }
+      
+      //  return condition 
+    }
       if(Check()) {
         setShowAlert({show:true , text:'Some Data is not Completed to Sign up'})
       }
-      else { 
+      else if(!Check2()) { 
         const {password ,copassword} = inputs 
         if (password !== copassword) 
         setShowAlert({show:true,text:'the Co-password is not password'})

@@ -1,18 +1,33 @@
 import React , {useEffect , useState} from 'react'
-import { collection  , doc, getDocs} from 'firebase/firestore'
+import { collection  ,docs, doc, getDocs} from 'firebase/firestore'
 import { database } from '../firebase-config';
+import { useNavigate } from 'react-router-dom';
 const Landing = () => {
+  let navigate = useNavigate() ; 
   const accounstRef = collection(database , 'users')
-  const [data ,setData] = useState([]) ; 
+  const [data ,setData] = useState([]) ;
+  const [inputs ,setInputs] = useState({email:'' , password:''}) ;  
   const [loading ,setLoading] = useState(false)
   console.log(data)
   useEffect(()=>{
     const getUsers = async () => { 
       const data = await getDocs(accounstRef) ; 
-      setData( data => data.docs.map(post => ({email:post.data().email , password:post.data().password}))) ; 
-      
+      setData(data.docs.map(user => ({email:user.data().email , password:user.data().password , ...user.data()}))) ; 
     }
+    getUsers() ; 
   },[])
+
+  const Signin = async () => { 
+    const user = data.find(user => user.email === inputs.email && user.password === inputs.password) ; 
+    if (user === undefined){
+      alert('user not found ')
+    }
+    else { 
+      const data = await getDocs(accounstRef) ; 
+      const ID =   data.docs.find(user => user.userName === data.userName).id ; 
+      navigate(`/Home/${ID}`)
+    }
+  }
   return (
     <>
     <div className='landing'>
@@ -23,10 +38,11 @@ const Landing = () => {
       </div>
       <div className='signin'>
         <h3>Sign In</h3>
-        <input type="text" placeholder='email' />
-        <input type="password" placeholder='password' />
+        <input type="text" placeholder='email' onChange={e => setInputs({...inputs , email:e.target.value})}/>
+        <input type="password" placeholder='password' onChange={e => setInputs({...inputs , password:e.target.value})} />
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum.</p>
         <p>Lorem, ipsum dolor. <a href="">Sign Up</a></p>
+        <button onClick={Signin}>Sign in </button>
       </div>
     </div>
     <div className='categories'>
