@@ -34,6 +34,7 @@ const Post = ({userName ,email , image , time , post ,user , comments , likes , 
         const userDoc = doc(database , 'posts',ID) 
         await updateDoc(userDoc,{likesUsername:[...likesUsername ,userName ],likes:likes + 1  }) ; 
     }
+    console.log('commentsText' ,commentsText)
   return (
     <div className="post">
         

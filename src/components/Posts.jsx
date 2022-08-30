@@ -11,7 +11,7 @@ const Posts = ({user}) => {
     const [loading ,setLoading] = useState(false) ; 
 
     // navigation 
-    console.log('posts',posts)
+    console.log('FROM POSTSS COOMPP ',posts)
     useEffect(()=>{
         setLoading(true)
         const getPosts = async () => { 

@@ -20,7 +20,7 @@ const Profile = ({userName, password , email , name , image , followers , follow
     const [inputs, setInputs] = useState(Data) ; 
     const [images ,setImages] = useState(images1)
   const intialImages = images1 ;
-
+    console.log(inputs)
   useEffect(()=>{
     setLoading(true)
     const getPosts = async () => { 
@@ -36,33 +36,41 @@ const Profile = ({userName, password , email , name , image , followers , follow
 
 //   updates 
 const updateComment = async () => { 
+    console.log(posts)
     for(let i = 0 ; i < account.commentPost.length ; i++){
-        console.log(`accountPost[${i}]` ,account.accountPost[i] )
+        console.log(`accountPost[${i}]` ,account.commentPost[i] )
         const post = posts.find(post => post.postId == account.commentPost[i] ) ;
         console.log('post',post) 
         const POSTID = post.ID1 ; 
         const editComments = post.commentsText.map(comment => 
             {
-                if (comment.userName === account.useName) return {...comment , userName , image }
+                console.log('comment',comment)
+        const {name,userName , email ,password ,image} = inputs ;  
+
+                if (comment.userName === account.userName) { return ({...comment , userName  , image  , found:'qewqe' })}
                 else return comment 
             })
+        console.log(post.commentsText , editComments)
       const postDoc = doc(database, "posts", POSTID);
-      await updateDoc(postDoc, {...post,commentsText:[...editComments]});
+      console.log('newPost' , {...post,commentsText:editComments})
+      await updateDoc(postDoc, {...post,commentsText:editComments});
+      console.log('updateComment') ; 
     }
-}
+        }
 const updatePost = async () => { 
     for(let i = 0 ; i < account.postsId.length ; i++) {
         const post = posts.find(post => post.postId == account.postsId[i] ) ; 
         const POSTID = post.ID1 ; 
+        console.log('update post POSTID' , POSTID)
         const postDoc = doc(database, "posts", POSTID);
-        const {name,userName , email ,password ,image} = inputs ;  
-        await updateDoc(postDoc, {...post , userName , email , image} );
+        await updateDoc(postDoc, {...post , ...inputs} );
+        console.log('updatePost') ; 
 
     }
 }
   const updateUser = async (id) => {
+      updatePost() ;
     updateComment() ; 
-    updatePost()
     const userDoc = doc(database, "users", id);
     await updateDoc(userDoc, {...account,...inputs});
 };

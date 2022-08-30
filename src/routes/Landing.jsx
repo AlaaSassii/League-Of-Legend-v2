@@ -1,6 +1,18 @@
-import React from 'react'
-
+import React , {useEffect , useState} from 'react'
+import { collection  , doc, getDocs} from 'firebase/firestore'
+import { database } from '../firebase-config';
 const Landing = () => {
+  const accounstRef = collection(database , 'users')
+  const [data ,setData] = useState([]) ; 
+  const [loading ,setLoading] = useState(false)
+  console.log(data)
+  useEffect(()=>{
+    const getUsers = async () => { 
+      const data = await getDocs(accounstRef) ; 
+      setData( data => data.docs.map(post => ({email:post.data().email , password:post.data().password}))) ; 
+      
+    }
+  },[])
   return (
     <>
     <div className='landing'>
