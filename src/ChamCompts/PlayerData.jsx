@@ -10,7 +10,6 @@ const PlayerData = ({accountId,id,name,profileIconId,puuid,revisionDate,summoner
         <PlayerName data={{name , profileIconId , summonerLevel}}/> 
         <PlayerRank  data={{id , Key_Api }}/>  
         <PlayerMatches data={{puuid , Key_Api}}/>
-        <PlayerChampions data={{id ,accountId , Key_Api}}/>
     </div>
   )
 }

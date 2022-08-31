@@ -90,11 +90,142 @@
 @media(min-width:991px)
 {
     .playerName {
-    border: 1px solid black;
-    width: 600px;
+    width: 40%;
     display: flex;
+    align-items: center;
+    margin: auto;
     }
     .playerName img{
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        position: relative;
+        padding:10px ; 
         
     }
 }
+.playerName {
+    width:fit-content;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    }
+    .playerName img{
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        position: relative;
+        padding:10px ; 
+        
+    }
+.search-player{
+    display: flex;
+    align-items: center;
+    margin: 0 auto ;
+    width: 20%;
+    margin-top: 50px;
+  }
+  @media   (max-width:700px) {
+    .search-player{
+      width: 70%;
+    }
+  }
+  .search-player button{
+    margin-top: 30px;
+  }
+  .image-profile{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  .winrate-good{
+    color:#57CC99 
+  }
+  .winrate-bad{
+    color:rgb(174, 0, 0) 
+  }
+  .matches{
+    border:#282c34 solid 1px  ; 
+    width: 40%;
+    margin : 0 auto ; 
+  
+  }
+  .match{
+    width: 700px;
+    display: flex;
+    margin : 0 auto ; 
+    justify-content: space-around;
+  }
+  @media(max-width:700px){
+    .matches{
+      width:99%
+    }
+    .match{
+      width: 100%;
+      
+    }
+  }
+  .champ-image{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .items {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+  .player-top{
+    display: flex;
+    justify-content: space-around;
+  }
+  .player-top-top{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .participants{
+    width: 50%;
+    justify-content: space-between;
+  }
+  @media(max-width:700px){
+    .participants{
+      font-size: 10px;
+    }
+  }
+  /* table */
+  th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  
+  /* GRIDDDDDDDDDDDDDDDDDDD */
+  .grid { 
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-auto-rows: (150px , auto);
+    grid-template-areas:
+      "playerName Rank Rank"
+      "KDA Matches Champions "
+      "KDA2 Matches Champions"
+    ;
+  }
+  .playerName{
+    grid-area:'playerName';
+  }
+  .Rank {
+    grid-area:'Rank';
+    display: flex;
+    height: 150px;
+    width: 400px;
+    margin: auto;
+    justify-content:space-between;
+  }
+
+
+  .matches{
+    margin-top: 100px;
+  }
