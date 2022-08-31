@@ -1069,36 +1069,7 @@ font-size: 10px;
 
 .ChampionsList .container {
   width: 100%;
-}
-
-@media(min-width:991px){
-  .ChampionsList{
-  }
-  .ChampionsList .inputs { 
-    width: fit-content;
-    margin: auto;
-  }
-  .ChampionsList .inputs  input ,  .ChampionsList .inputs  button{ 
-    padding:10px 5px ; 
-    outline : none ; 
-  }
-  .ChampionsList .inputs  input , .ChampionsList .inputs  button {
-      margin:10px ; 
-  }
-  .ChampionsList .Champions {
-  width: 100%;
-  }
-  .ChampionsList .container {
-  grid-template-columns: repeat(auto-fill , minmax(100px , 1fr));
-    width: 80%;
-  }
-  .ChampionsList .container .box{
-    width: 100%;
-  }
-  .ChampionsList .container .box img {
-    width: 100%;
-    
-  }
+  overflow: hidden;
 }
 .ChampionsList .inputs{
   display: flex;
@@ -1123,4 +1094,50 @@ font-size: 10px;
 .ChampionsList .container .box img {
   width: 100%;
   
+}
+.box-child-2{
+  display: none;
+}
+.box-child-2::after{
+  display: none;
+}
+
+@media(min-width:991px){
+  .box-child-2::after{
+    display: block;
+  }
+  
+  .box-child-2{
+    display: block;
+  }
+  .ChampionsList span{
+    font-size: 12px;
+  }
+  .ChampionsList .inputs { 
+    width: fit-content;
+    margin: auto;
+  }
+  .ChampionsList .inputs  input ,  .ChampionsList .inputs  button{ 
+    padding:10px 5px ; 
+    outline : none ; 
+  }
+  .ChampionsList .inputs  input , .ChampionsList .inputs  button {
+      margin:10px ; 
+  }
+  .ChampionsList .Champions {
+  width: 70%;
+  margin: auto;
+  }
+  .ChampionsList .container {
+  grid-template-columns: repeat(auto-fill , minmax(100px , 1fr));
+    width: 80%;
+    overflow: visible;
+  }
+  .ChampionsList .container .box{
+    width: 100%;
+  }
+  .ChampionsList .container .box img {
+    width: 100%;
+    
+  }
 }

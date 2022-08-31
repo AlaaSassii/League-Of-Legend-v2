@@ -7,6 +7,8 @@ const Champion = ({id , blurb , image}) => {
             <div class="box-child-1">
                 <img src={`http://ddragon.leagueoflegends.com/cdn/12.16.1/img/champion/${id}.png`} alt=""/>
             </div>
+            <span >{id}</span>
+
             <div class="box-child-2">
                 <div>
                     <img src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${id}_0.jpg`} alt=""/>
