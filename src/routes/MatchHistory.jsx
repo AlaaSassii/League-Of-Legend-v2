@@ -7,7 +7,7 @@ const MatchHistory = () => {
     const [value, setValue] = useState("") ; 
     const [danger ,setDanger]  = useState(false) ; 
     const [error,setError] = useState(false) ; 
-    const Key_Api = "RGAPI-95a50263-627d-4d98-9a0a-6724a50f9bbf"   ; 
+    const Key_Api = "RGAPI-d454d221-6af4-4ac1-8bf5-38a88b973b0d"   ; 
 
     const handleSubmit = (e)=>{
         const Link = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${value}?api_key=${Key_Api}`

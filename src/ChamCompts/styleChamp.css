@@ -74,3 +74,27 @@
 .box .box-child-2 p {
     padding:10px ; 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* Match history */
+@media(min-width:991px)
+{
+    .playerName {
+    border: 1px solid black;
+    width: 600px;
+    display: flex;
+    }
+    .playerName img{
+        
+    }
+}
