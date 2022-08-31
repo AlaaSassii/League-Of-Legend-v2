@@ -901,3 +901,167 @@ font-size: 10px;
 
 /* End Lading */
 
+
+
+.champions-info .container {
+    width: 100%;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary-black);
+    color: white;
+    padding: 50px 20px;
+}
+.champions-info .champ-info{
+  display: flex;
+  margin-bottom:15px;
+}
+.champ-info div{
+  padding:10px ;
+}
+@media(max-width:991px){
+  .champ-info{
+    flex-direction: column;
+    padding:8px 0 ;  
+  }
+  .champ-info img { 
+    width: 100px;
+    height: 100px;
+  }
+  .champ-info div{
+    padding:8px 
+  }
+}
+
+
+.champ-info-foot {
+  display: flex;
+  flex-direction: column;
+}
+.champions-info .abilities {
+ 
+  padding:20px 0 ;
+}
+.champions-info .abilities span{
+  margin:10px 0 ;
+  display: block ;
+}
+.champions-info .abilities span img {
+  margin-bottom: 10px;
+}
+.champions-info .abilities span div {
+  padding: 5px 10px;
+  border-radius: 5px;
+  line-height: 1.6;
+}
+.champions-info .abilities span div h5 {
+  color:var(--primary-red) ; 
+  text-transform: capitalize;
+}
+
+.champ-info-foot > div:last-child {
+  line-height: 1.6;
+}
+.champ-info-foot > div:last-child div{
+  margin-bottom: 10px;
+}
+.champ-info-foot > div:last-child div > h3 {
+  font-size: 22px;
+}
+.skinss {
+  text-align: center;
+}
+.skinss img{
+  width: 100px ;
+
+}
+@media (min-width:991px){
+  
+  .champions-info .container {
+    width: 80%;
+  
+  }
+    .champions-info .abilities {
+      display: flex;
+      gap: 40px;
+      margin-left : 0; 
+      margin-right: auto;
+    }
+   
+    .champions-info .champ-info-foot{
+      flex-direction: column;
+      gap: 50px;
+    }
+    .champions-info .abilities > span {
+      position: relative; 
+    }
+    .champions-info .abilities > span {
+      position: relative; 
+    }
+    .champions-info .abilities > span div{
+      display: none;
+      position: absolute; 
+      background-color: white ;
+      color:var(--secondary-black) ;
+      padding:5px ; 
+      padding:10px ; 
+      border-radius: 5px;
+    }
+    .champions-info .abilities > span div{
+      width: 500px;
+
+    }
+    .champions-info .abilities > span div:first-child{
+      width: 275px;
+
+    }
+    .champions-info .abilities span div{
+      background-color: white;
+    }
+    .abilities > span div h5{
+      display: inline;
+      font-size: 17px ; 
+      color: var(--primary-red);
+    }
+    .champions-info .abilities > span:hover div{
+      display: block;
+    }
+    .champions-info .abilities > span div::before{
+      content:'' ; 
+      position: absolute;
+      border-width: 5px 10px 10px 10px;
+      border-style: solid;
+      border-color: transparent transparent white transparent;
+      top: -14px;
+    }
+    .champ-info-foot > div:last-child { 
+      padding: 10px ;
+      margin-left : 0; 
+      margin-right: auto;
+    }
+    .champ-info-foot div:last-child > div {
+      flex-basis: 50%;
+      width: 100% ;
+      padding:20px ; 
+      list-style: georgian;
+      line-height: 1.6;
+    }
+    .champ-info-foot div:last-child > div h3 {
+  
+    }
+    .skinss {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .skinss img{
+      width: 300px;
+      margin: 0 10px ;
+      gap: 20px;
+    }
+  }
+  .asd{
+    
+  }
+
+/* Champions info */

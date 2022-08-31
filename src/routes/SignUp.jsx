@@ -24,8 +24,7 @@ const SignUp = () => {
       const {name , userName , email , password , image } = inputs 
       const Ref = id ; 
       await addDoc(accountsRef, {name , userName , email , password , image , Ref, following:0 , followers:0 , followingAccounts:[] , followersAccounts : [] , postsId:[] ,commentPost:[] });
-// postsId => to catch the post that we created  = [] 
-// commentPost => to catch the comments that created = []
+
       const newData = await getDocs(accountsRef) ; 
       const idz = newData.docs.find(post => post.data().Ref === id )
 
@@ -40,42 +39,24 @@ const SignUp = () => {
       const data = await getDocs(accountsRef) ; 
       const newData = data.docs.map(user => ({...user.data() ,id:user.id })) ;
       const user =newData.find(data => data.email === inputs.email || data.userName === inputs.userName) ; 
-      const condition = false ;  
-      if(user===undefined) {
-        setShowAlert({show:true , text:'There is an account that has the same userName and email !!'})
-        condition = true ; 
-      } 
-      else {condition = false } ;
+      console.log('USERRRRRRRRR FOUNDDDD',user)
+      let condition = false ;  
+      if(user===undefined){ condition = true }
+      console.log('condition',condition)
       return condition 
-      // const {email , userName } = newData ; 
-      // let condition = false ; 
-      // if(email === inputs.email && userName === inputs.userName  )
-      //  {
-      //   setShowAlert({show:true , text:'There is an account that has the same userName and email !!'})
-      //   condition = true ; 
-      //  }
-      //  if(email !== inputs.email && userName === inputs.userName){ 
-      //   setShowAlert({show:true , text:'There is an account that has the same userName !!'})
-      //   condition = true ; 
-      // }
-      //  if(email === inputs.email && userName !== inputs.userName){ 
-      //   setShowAlert({show:true , text:'There is an account that has the same email !!'})
-      //   condition = true ; 
-      // }
-      
-      //  return condition 
     }
+    // setShowAlert({show:true , text:'There is an account that has the same userName and email !!'})
+    // 
+      
       if(Check()) {
         setShowAlert({show:true , text:'Some Data is not Completed to Sign up'})
       }
       else if(!Check2()) { 
-        const {password ,copassword} = inputs 
-        if (password !== copassword) 
-        setShowAlert({show:true,text:'the Co-password is not password'})
-        else { 
-          const id1 = new Date().getTime() ; 
-          createUser(id1) ; 
-        }
+    setShowAlert({show:true , text:'There is an account that has the same userName or email !!'})
+      }
+      else { 
+        const id1 = new Date().getTime() ; 
+        createUser(id1) ; 
       }
   }
   // useEffect for Showin Alert 
