@@ -37,9 +37,12 @@ const Champions = () => {
         setChampions(championss.filter(champ => champ.name.toLowerCase().includes(e.target.value.toLowerCase()) )) 
     }
   return (
-    <div>
+    <div className='ChampionsList'>
+        <div className='container'>
+        <div className='inputs'>
         <input type="text" placeholder='text' onChange={e =>handleChange(e)} value={value} />
         {types.map(type =><button onClick={()=>filterTypes(type)}  key={type}>{type}</button>)}
+        </div>
         {
             champions.length ?
             <div className='Champions'>
@@ -55,7 +58,7 @@ const Champions = () => {
             :
             <h1>No Data</h1>
         }
-
+        </div>
     </div>
   )
 }

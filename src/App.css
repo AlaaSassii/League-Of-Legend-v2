@@ -1060,8 +1060,67 @@ font-size: 10px;
       gap: 20px;
     }
   }
-  .asd{
+
+
+
+  /* Champions info */
+
+/* ChampionsList  */
+
+.ChampionsList .container {
+  width: 100%;
+}
+
+@media(min-width:991px){
+  .ChampionsList{
+  }
+  .ChampionsList .inputs { 
+    width: fit-content;
+    margin: auto;
+  }
+  .ChampionsList .inputs  input ,  .ChampionsList .inputs  button{ 
+    padding:10px 5px ; 
+    outline : none ; 
+  }
+  .ChampionsList .inputs  input , .ChampionsList .inputs  button {
+      margin:10px ; 
+  }
+  .ChampionsList .Champions {
+  width: 100%;
+  }
+  .ChampionsList .container {
+  grid-template-columns: repeat(auto-fill , minmax(100px , 1fr));
+    width: 80%;
+  }
+  .ChampionsList .container .box{
+    width: 100%;
+  }
+  .ChampionsList .container .box img {
+    width: 100%;
     
   }
+}
+.ChampionsList .inputs{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.ChampionsList .inputs input{
+  width: 100%;;
+}
+.ChampionsList .inputs  input , .ChampionsList .inputs  button {
+  padding:5px ; 
+  margin:5px ; 
 
-/* Champions info */
+}
+.ChampionsList .Champions .container {
+  grid-template-columns: repeat(auto-fill , minmax(50px , 1fr));
+  width: 100%;
+}
+.ChampionsList .container .box{
+  width: 100%;
+}
+.ChampionsList .container .box img {
+  width: 100%;
+  
+}
