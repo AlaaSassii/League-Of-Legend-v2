@@ -45,18 +45,15 @@ const SignUp = () => {
       console.log('condition',condition)
       return condition 
     }
-    // setShowAlert({show:true , text:'There is an account that has the same userName and email !!'})
-    // 
-      
       if(Check()) {
         setShowAlert({show:true , text:'Some Data is not Completed to Sign up'})
       }
-      else if(!Check2()) { 
-    setShowAlert({show:true , text:'There is an account that has the same userName or email !!'})
+      else if(Check2()) { 
+    const id1 = new Date().getTime() ; 
+    createUser(id1) ; 
       }
       else { 
-        const id1 = new Date().getTime() ; 
-        createUser(id1) ; 
+    setShowAlert({show:true , text:'There is an account that has the same userName or email !!'})
       }
   }
   // useEffect for Showin Alert 
