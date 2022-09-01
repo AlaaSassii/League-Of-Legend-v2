@@ -1142,3 +1142,23 @@ font-size: 10px;
     
   }
 }
+.inputMatch{
+  width: fit-content;
+  margin: auto;
+}
+.inputMatch input { 
+  padding: 7px 5px ; 
+
+}
+@media (max-width:911px){
+  .Rank {
+    width:300px;
+  }
+  .Rank img { 
+    width: 100px;
+  }
+  .match{
+    max-width: 100%;
+    overflow: hidden;
+  }
+}

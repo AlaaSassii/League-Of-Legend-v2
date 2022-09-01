@@ -28,8 +28,10 @@ const MatchHistory = () => {
     <div>
         { error && <h1>Data not Found </h1> }
         { danger && <h1>There is no name to search</h1> } 
+        <div className='inputMatch'>
         <input type="text" placeholder='search platyer' value={value}  onChange={(e) =>setValue(e.target.value) }/>
         <button onClick={value ? (e) => handleSubmit(e) : () => setDanger(true) }>search</button>
+        </div>
         {
             Object.values(data).length > 0  && <PlayerData {...data}  Key_Api={Key_Api}/>
         }
