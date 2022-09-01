@@ -31,29 +31,27 @@ const SignUp = () => {
       navigate(`/Home/${idz.id}`)
     };
     console.log('accounts',accounts)
-      const Check = () => { 
+      const NoAllInputsAreFiled = () => { 
       if (inputs.name && inputs.userName && inputs.email && inputs.password && inputs.copassword && inputs.image) return false
       else return true 
       }
-      const Check2 =async () => { 
+      const NoAccount =async () => { 
       const data = await getDocs(accountsRef) ; 
       const newData = data.docs.map(user => ({...user.data() ,id:user.id })) ;
       const user =newData.find(data => data.email === inputs.email || data.userName === inputs.userName) ; 
       console.log('USERRRRRRRRR FOUNDDDD',user)
-      let condition = false ;  
-      if(user===undefined){ condition = true }
-      console.log('condition',condition)
-      return condition 
+      if(user===undefined) return true
+      return false  
     }
-      if(Check()) {
+      if(NoAllInputsAreFiled()) {
         setShowAlert({show:true , text:'Some Data is not Completed to Sign up'})
       }
-      else if(Check2()) { 
-    const id1 = new Date().getTime() ; 
-    createUser(id1) ; 
+      else if(NoAccount()) { 
+        const id1 = new Date().getTime() ; 
+        createUser(id1) ;
       }
       else { 
-    setShowAlert({show:true , text:'There is an account that has the same userName or email !!'})
+        setShowAlert({show:true , text:'There is an account that has the same userName or email !!'})
       }
   }
   // useEffect for Showin Alert 
