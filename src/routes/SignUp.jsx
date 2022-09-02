@@ -23,7 +23,7 @@ const SignUp = () => {
     const createUser = async (id) => {
       const {name , userName , email , password , image } = inputs 
       const Ref = id ; 
-      await addDoc(accountsRef, {name , userName , email , password , image , Ref, following:0 , followers:0 , followingAccounts:[] , followersAccounts : [] , postsId:[] ,commentPost:[] });
+      await addDoc(accountsRef, {name , userName , email , password , image , Ref, followingAccounts:[] , followersAccounts : [] , postsId:[] ,commentPost:[] });
 
       const newData = await getDocs(accountsRef) ; 
       const idz = newData.docs.find(post => post.data().Ref === id )
@@ -39,6 +39,7 @@ const SignUp = () => {
       const data = await getDocs(accountsRef) ; 
       const newData = data.docs.map(user => ({...user.data() ,id:user.id })) ;
       const user =newData.find(data => data.email === inputs.email || data.userName === inputs.userName) ; 
+      return user
       console.log('USERRRRRRRRR FOUNDDDD',user)
       if(user===undefined) return true
       return false  
@@ -46,13 +47,11 @@ const SignUp = () => {
       if(NoAllInputsAreFiled()) {
         setShowAlert({show:true , text:'Some Data is not Completed to Sign up'})
       }
-      else if(NoAccount()) { 
+      else if(!(NoAccount() === undefined)) { 
         const id1 = new Date().getTime() ; 
         createUser(id1) ;
       }
-      else { 
-        setShowAlert({show:true , text:'There is an account that has the same userName or email !!'})
-      }
+     
   }
   // useEffect for Showin Alert 
   useEffect(()=>{
