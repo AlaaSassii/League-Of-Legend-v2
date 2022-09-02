@@ -116,6 +116,7 @@ const updatePost = async () => {
         <div className="container">
        {
         !edit ?<>
+        <div style={{padding:'0   20px ' }}>
         <div className='image'>
        <img src={image} />
        </div>
@@ -126,10 +127,11 @@ const updatePost = async () => {
         <div className='info'>password :{password}</div>
         <div className='info'>followers:{followers}</div>
         <div className='info'>following:{following}</div>
+        <button  style={{margin:'0 auto 5px 0 ' }}onClick={()=>setEdit(true)}>edit</button>
+        <button  style={{margin:'0 auto 5px 0 ' }}onClick={()=>{deleteUser(id)}}>delete</button>
         </div>
-        <button onClick={()=>setEdit(true)}>edit</button>
-        <button onClick={()=>{deleteUser(id)}}>delete</button>
-        
+      
+        </div>
         </> 
     :
         <>
@@ -141,16 +143,19 @@ const updatePost = async () => {
         <div><img onClick={e =>{setInputs({...inputs , image:e.target.src});setImages({...intialImages , image5:true})}}src="https://pbs.twimg.com/media/FISX2MhXwAkoIYY.jpg" className={images.image5&& 'nofilter'} /></div>
         <div><img onClick={e =>{setInputs({...inputs , image:e.target.src});setImages({...intialImages , image6:true})}}src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqAF1d1NkjYDlGLijo8Q8zP5U7Emz5rarp3iFauEvqFXWZnXIv3UK4mXlohn-DqZDZ-ys&usqp=CAU"  className={images.image6&& 'nofilter'}/></div>
     </div>
-    <div className="input">
+    <div className="input"  style={{padding:'0   20px ' }} >
         <input type="text" placeholder='name' value={inputs.name} onChange={e => setInputs({...inputs,name:e.target.value})} />
         <input type="text" placeholder='username' value={inputs.userName} onChange={e => setInputs({...inputs,userName:e.target.value})} />
         <input type="text" placeholder='email'  value={inputs.email} onChange={e => setInputs({...inputs,email:e.target.value})}  />
         <input type="password" placeholder='password' value={inputs.password} onChange={e => setInputs({...inputs,password:e.target.value})}/>
-        </div>
         <div>followers:{followers}</div>
         <div>following:{following}</div>
-        <button onClick={()=>setEdit(false)}>cancel</button> 
-        <button onClick={()=>{updateUser(id)}}>edit</button>
+        <div >
+        <button  style={{margin:'0 auto 5px 0 ' }} onClick={()=>setEdit(false)}>cancel</button> 
+        <button style={{margin:'0 auto 5px 0 ' }}onClick={()=>{updateUser(id)}}>edit</button>
+        </div>
+        </div>
+  
         </>
     }
     </div>
