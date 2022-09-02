@@ -9,7 +9,7 @@ const Navbar = () => {
               <a href='/Champions'>Champions</a>  
               <li>Match history</li>  
               <li>Sign Up</li>
-              <li>Sign In</li>
+              <li>Sign In</li>a
             </ul>
         </div>
     </nav>
