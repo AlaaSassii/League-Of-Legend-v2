@@ -245,3 +245,28 @@
     position: relative;
     padding: 10px;
 }
+.champions-section{
+  align-items: center;
+}
+.champions-section .text h3 {
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: var(--primary-red);
+}
+.SignUp {
+  border:none;
+  margin-top: 0px;
+}
+.SignUp .input {
+border: none;
+
+}
+.SignUp .form {
+  border: none;
+}
+@media (max-width: 768px){
+  .SignUp .images {
+    border: none;
+}
+}
