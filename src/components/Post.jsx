@@ -45,7 +45,7 @@ const Post = ({userName ,email , image , time , post ,user , comments , likes , 
             <div className="text">
                 <h3>{userName}</h3>
                 <h6>{email}</h6>
-                <h6>{toDateTime(time.seconds).toString().slice(0,20)}</h6>
+                <h6>{toDateTime(time.seconds).toString().slice(0,21)}</h6>
             </div>
         </div>
         <div className="post-text" onClick={()=>{

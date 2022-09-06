@@ -1231,3 +1231,34 @@ font-size: 10px;
       width: 200px;
     }
   }
+
+  .nav-account{ 
+    height: 63px;
+    align-items: center;
+
+  }
+  .nav-account .container{
+    padding-top:10px ; 
+    align-items: center;
+  }
+  .nav-account .container div {
+    display: flex;
+    align-items: center;
+
+  }
+  .nav-account .container div li { 
+    text-decoration: none ;
+    color: white;
+    list-style: none;
+  }
+  .nav-account .container div a { 
+    text-decoration: none ;
+    color: white;
+    list-style: none;
+    margin : 0 10px
+  }
+ .post .text{
+  }
+  .Account .post .text h3, .Account .post .text h6 {
+    margin: 0 0 0 96px;
+}

@@ -36,7 +36,7 @@ if (loading) return <h1>Loading..</h1>
             <div className="text">
                 <h3>{userName}</h3>
                 <h6>{email}</h6>
-                <h6>{toDateTime(time.seconds).toString()}</h6>
+                <h6>{toDateTime(time.seconds).toString().toString().slice(0,21)}</h6>
             </div>
             <div className="post-text">
             {post}
