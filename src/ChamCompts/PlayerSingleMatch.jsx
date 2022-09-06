@@ -17,7 +17,7 @@ const PlayerSingleMatch = ({data}) => {
     
     <>
     {matchData.info.participants.find(player=>player.puuid === puuid).win  ? 
-    <div  className='match' variant={'success'} style={{border:'1px solid #002600' ,backgroundColor:'#eaffea'}}>
+    <div  className='match' variant={'success'} style={{border:'1px solid #002600' ,backgroundColor:'#f5fff5' ,marginTop:'5px'}}>
     <div>
     <h3 >{matchData.info.gameMode}</h3>
     <h3 >
@@ -27,7 +27,7 @@ const PlayerSingleMatch = ({data}) => {
     <PlayerSingleMatchData {...matchData.info} puuid={puuid}/>
     </div>   
     : 
-    <div  className='match' variant={'danger'} style={{border:'1px solid #700000' ,backgroundColor:'#ffbdbd'}}>
+    <div  className='match' variant={'danger'} style={{border:'1px solid #700000' ,backgroundColor:'#ffbdbd' , marginTop:'5px'}}>
     <div>
     <h3 >{matchData.info.gameMode}</h3>
     <h3 >

@@ -13,7 +13,6 @@ import MatchHistory from './routes/MatchHistory';
 function App() {
   return (
     <Router>
-      <Navbar/>
       <Routes>
         <Route path='/' element={<Landing/>} /> 
         <Route path='/Signup' element={<SignUp/>} /> 

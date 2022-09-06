@@ -2,6 +2,7 @@ import React , {useEffect , useState} from 'react'
 import { collection  ,docs, doc, getDocs} from 'firebase/firestore'
 import { database } from '../firebase-config';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 const Landing = () => {
   let navigate = useNavigate() ; 
   const accounstRef = collection(database , 'users')
@@ -30,6 +31,7 @@ const Landing = () => {
   }
   return (
     <>
+    <Navbar/>
     <div className='landing'>
       <div className='section1'>
           <h1>Section: One</h1>
@@ -41,7 +43,7 @@ const Landing = () => {
         <input type="text" placeholder='email' onChange={e => setInputs({...inputs , email:e.target.value})}/>
         <input type="password" placeholder='password' onChange={e => setInputs({...inputs , password:e.target.value})} />
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum.</p>
-        <p>Lorem, ipsum dolor. <a href="">Sign Up</a></p>
+        <p>Lorem, ipsum dolor. <a href="/Signup">Sign Up</a></p>
         <button onClick={Signin}>Sign in </button>
       </div>
     </div>

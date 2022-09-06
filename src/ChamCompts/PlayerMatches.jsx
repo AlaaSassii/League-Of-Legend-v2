@@ -20,8 +20,6 @@ const PlayerMatches = ({data}) => {
         {Matches.length  > 0 && 
         Matches.map((match,index)=> <PlayerSingleMatch key={index} data={{puuid, Key_Api,match}}/> )
         }
-       {num === 20 || <button onClick={ ()=>setNum(num + 5 ) }>add</button>}
-      {num > 5 &&   <button onClick={()=>setNum(num - 5 ) }>remove</button>}
     </div>
   )
 }

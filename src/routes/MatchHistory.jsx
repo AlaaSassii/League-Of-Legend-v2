@@ -7,7 +7,7 @@ const MatchHistory = () => {
     const [value, setValue] = useState("") ; 
     const [danger ,setDanger]  = useState(false) ; 
     const [error,setError] = useState(false) ; 
-    const Key_Api = "RGAPI-d454d221-6af4-4ac1-8bf5-38a88b973b0d"   ; 
+    const Key_Api = "RGAPI-b8520270-3b74-4a87-a84a-fa8ef83a16d1"   ; 
 
     const handleSubmit = (e)=>{
         const Link = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${value}?api_key=${Key_Api}`
@@ -26,10 +26,10 @@ const MatchHistory = () => {
       },[error , danger])
   return (
     <div>
-        { error && <h1>Data not Found </h1> }
-        { danger && <h1>There is no name to search</h1> } 
+        { error && <div className='error-message' >Data not Found </div> }
+        { danger && <div className='error-message '>There is no name to search</div> } 
         <div className='inputMatch'>
-        <input type="text" placeholder='search platyer' value={value}  onChange={(e) =>setValue(e.target.value) }/>
+        <input className='' type="text" placeholder='search platyer' value={value}  onChange={(e) =>setValue(e.target.value) }/>
         <button onClick={value ? (e) => handleSubmit(e) : () => setDanger(true) }>search</button>
         </div>
         {

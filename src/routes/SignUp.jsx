@@ -2,6 +2,7 @@ import { database } from '../firebase-config'
 import {addDoc ,  getDoc, getDocs , collection} from 'firebase/firestore'
 import React ,{useState , useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
+import Navbar from '../components/Navbar'
 const Data = {
   name:'',userName:'' , email:'' ,password:'' ,copassword:'',image:''
 }
@@ -71,6 +72,8 @@ const SignUp = () => {
     getAccounts() ; 
   },[])
   return (
+    <>
+    <Navbar/>
     <div className='SignUp'>
 
     <div className='container'>
@@ -100,6 +103,7 @@ const SignUp = () => {
     <button onClick={()=>submitDatabase()}>Sign Up</button>
     </div>
     </div>
+    </>
   )
 }
 

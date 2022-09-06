@@ -1,15 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom' ; 
-const Navbar = () => {
+const Navbar = ({condition , id}) => {
   return (
     <nav>
         <div className="container">
-            <div className="logo">asasdasdasdasd</div>
+            <h2 className="logo">League </h2>
             <ul className="links">
-              <a href='/Champions'>Champions</a>  
-              <li>Match history</li>  
-              <li>Sign Up</li>
-              <li>Sign In</li>a
+          {!condition &&    <li><a href='/'>Home</a></li>}
+              <li><a href='/Champions'>Champions</a></li>
+              <li><a href='/Matchhistroy'>Match Histroy</a></li>
+          {!condition ||    <li><a href={``}>Account</a></li>}
+
             </ul>
         </div>
     </nav>

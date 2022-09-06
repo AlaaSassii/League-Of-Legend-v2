@@ -5,6 +5,7 @@ import {useParams} from 'react-router-dom'
 import AccountPosts from '../components/AccountPosts' 
 import { collection,  getDocs } from 'firebase/firestore'
 import { database } from '../firebase-config'
+import NavAccount from '../components/NavAccount'
 const Accout = () => {
     const usersCollectionRef = collection(database,'users')
     const [loading,setLoading] = useState(true) ; 
@@ -24,11 +25,14 @@ const Accout = () => {
 
     if (loading) return <h1>Loading..</h1>
     return (
+        <>
+        <NavAccount/>
     <div>
         {id}
         <Profile account={account} {...account}/>
         <AccountPosts id={account.id}/>
     </div>
+    </>
     )
 }
 

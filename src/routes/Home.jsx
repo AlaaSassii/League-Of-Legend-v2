@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import { collection , getDocs , addDoc, updateDoc  ,doc} from 'firebase/firestore';
 import { database } from '../firebase-config';
 import Posts from '../components/Posts';
+import NavAccount from '../components/NavAccount';
 const Home = () => {
     // Database
     const usersCollectionRef = collection(database , 'users') ;
@@ -40,12 +41,15 @@ const Home = () => {
     }
     if (loading) return <h1>Loading...</h1>
     else return (
+        <>
+        <NavAccount id={user.id}/>
     <div className='Home'>
     <div className='container' style={{margin:'auto'}}>
         <input type="text" placeholder='Add a Post' value={inputValue} onChange={e => setInputValue(e.target.value) }/> <button onClick={AddPost}>Create</button>
         <Posts user={user}/>
     </div>
     </div>
+    </>
   )
 }
 

@@ -5,8 +5,11 @@ const PlayerName = ({data}) => {
   return (
     <div className='playerName'>
         <img className="image-profile" src={`https://ddragon.leagueoflegends.com/cdn/12.10.1/img/profileicon/${profileIconId}.png`} />
-        <h6>{name}</h6>
-        <h6>level {summonerLevel}</h6>
+        <div>
+        <h3>{name}</h3>
+        <h4>level {summonerLevel}</h4>
+        </div>
+    
     </div>
   )
 }
