@@ -1,6 +1,7 @@
 import React , {useEffect , useState} from 'react' ;
 import axios from 'axios' ;
 import Champion from '../ChamCompts/Champion';
+import Navbar from '../components/Navbar'
 
 const Champions = () => {
     const [loading, setLoading] = useState(true) ;
@@ -37,6 +38,8 @@ const Champions = () => {
         setChampions(championss.filter(champ => champ.name.toLowerCase().includes(e.target.value.toLowerCase()) )) 
     }
   return (
+    <>
+    <Navbar/>
     <div className='ChampionsList'>
         <div className='container'>
         <div className='inputs'>
@@ -60,6 +63,7 @@ const Champions = () => {
         }
         </div>
     </div>
+    </>
   )
 }
 

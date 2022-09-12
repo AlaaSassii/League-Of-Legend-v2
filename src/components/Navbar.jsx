@@ -4,9 +4,9 @@ const Navbar = ({condition , id}) => {
   return (
     <nav>
         <div className="container">
-            <h2 className="logo">League </h2>
+            <h2 className="logo"><a href='/'>League</a> </h2>
             <ul className="links">
-          {!condition &&    <li><a href='/'>Home</a></li>}
+         <li><a href='/Signup'>Sign up</a></li>
               <li><a href='/Champions'>Champions</a></li>
               <li><a href='/Matchhistroy'>Match Histroy</a></li>
           {!condition ||    <li><a href={``}>Account</a></li>}

@@ -33,7 +33,7 @@ const SignUp = () => {
     };
     console.log('accounts',accounts)
       const NoAllInputsAreFiled = () => { 
-      if (inputs.name && inputs.userName && inputs.email && inputs.password && inputs.copassword && inputs.image) return false
+      if (inputs.name && inputs.userName && inputs.email && inputs.password && inputs.image) return false
       else return true 
       }
       const NoAccount =async () => { 
@@ -52,7 +52,7 @@ const SignUp = () => {
         const id1 = new Date().getTime() ; 
         createUser(id1) ;
       }
-     
+    //  dasdasdasdasdasd
   }
   // useEffect for Showin Alert 
   useEffect(()=>{
@@ -97,7 +97,7 @@ const SignUp = () => {
     </div>
         <input type="text" placeholder='email'  value={inputs.email} onChange={e => setInputs({...inputs,email:e.target.value})}  />
         <input type="password" placeholder='password' value={inputs.password} onChange={e => setInputs({...inputs,password:e.target.value})}/>
-        <input type="text" placeholder='co-password' value={inputs.copassword} onChange={e => setInputs({...inputs,copassword:e.target.value})}/>
+       
     </div>
     </div>
     <button onClick={()=>submitDatabase()}>Sign Up</button>

@@ -570,6 +570,7 @@ nav > .container > ul li {
   padding:10px 5px;
   margin-bottom: 10px ; 
   outline : none ; 
+  color: black;
 }
 .SignUp .input > div{
   display: flex;
@@ -1261,4 +1262,31 @@ font-size: 10px;
   }
   .Account .post .text h3, .Account .post .text h6 {
     margin: 0 0 0 96px;
+}
+.player-top-top > div:first-child > div:last-child{
+  display: flex;
+}
+.Account input{
+  color:black
+}
+@media (max-width: 991px)
+{.post .info .text {
+    width: fit-content;
+    margin: 0 0 0 auto;
+    position: absolute;
+    right: 10%;
+    top: 20px;
+}}
+.post .info .text {
+  width: fit-content;
+  margin: 0 0 0 auto;
+  position: absolute;
+  right: 45%;
+  top: 20px;
+}
+.Account {
+  border: none;
+}
+.Account .input {
+  border: none;
 }

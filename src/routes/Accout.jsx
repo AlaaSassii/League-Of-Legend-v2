@@ -28,9 +28,7 @@ const Accout = () => {
         <>
         <NavAccount/>
     <div>
-        {id}
         <Profile account={account} {...account}/>
-        <AccountPosts id={account.id}/>
     </div>
     </>
     )

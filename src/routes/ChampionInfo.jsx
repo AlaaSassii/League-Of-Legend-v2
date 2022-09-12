@@ -5,6 +5,8 @@ import Skins from '../ChamCompts/Skins';
 import BackgroundInfo from '../ChamCompts/BackgroundInfo'; 
 import Info from '../ChamCompts/Info';
 import { useNavigate} from 'react-router-dom'
+import Navbar from '../components/Navbar'
+
 const ChampionInfo = () => { 
   
     let {id} = useParams() 
@@ -23,6 +25,8 @@ const ChampionInfo = () => {
     const {skins,spells,name,image} = data 
    
    return (
+    <>
+    <Navbar/>
     <div className='champions-info'>
       <div className='container'>
         {loading ?
@@ -36,6 +40,7 @@ const ChampionInfo = () => {
         }    
       </div>
     </div>
+    </>
   )
 }
 

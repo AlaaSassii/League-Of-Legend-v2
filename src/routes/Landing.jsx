@@ -34,7 +34,7 @@ const Landing = () => {
     <Navbar/>
     <div className='landing'>
       <div className='section1'>
-          <h1>Section: One</h1>
+          <h1>Welcome</h1>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis adipisci recusandae in ut nulla, sed vero quia alias ducimus quod exercitationem ex repellendus nemo non aspernatur repellat consequatur maxime quos.</p>
 
       </div>
