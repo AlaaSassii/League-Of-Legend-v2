@@ -45,6 +45,7 @@ const SignUp = () => {
       if(user===undefined) return true
       return false  
     }
+    // adadsasd
       if(NoAllInputsAreFiled()) {
         setShowAlert({show:true , text:'Some Data is not Completed to Sign up'})
       }
